@@ -33,6 +33,7 @@
             panel2 = new Panel();
             btnLogin = new Button();
             btnRegistrar = new Button();
+            label1 = new Label();
             SuspendLayout();
             // 
             // PanelMsgs
@@ -68,6 +69,7 @@
             btnLogin.Text = "Login";
             btnLogin.TextImageRelation = TextImageRelation.TextAboveImage;
             btnLogin.UseVisualStyleBackColor = false;
+            btnLogin.Click += btnLogin_Click;
             // 
             // btnRegistrar
             // 
@@ -84,6 +86,17 @@
             btnRegistrar.Text = "Registrar";
             btnRegistrar.TextImageRelation = TextImageRelation.TextAboveImage;
             btnRegistrar.UseVisualStyleBackColor = false;
+            btnRegistrar.Click += btnRegistrar_Click;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Georgia", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Location = new Point(172, 304);
+            label1.Name = "label1";
+            label1.Size = new Size(367, 46);
+            label1.TabIndex = 11;
+            label1.Text = "RoboBerto ChatBot";
             // 
             // FormInicio
             // 
@@ -91,14 +104,24 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(710, 681);
+            Controls.Add(label1);
             Controls.Add(btnRegistrar);
             Controls.Add(btnLogin);
             Controls.Add(panel2);
             Controls.Add(PanelMsgs);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "FormInicio";
-            Text = "FormInicio";
+            Text = "Inicio - RoboBerto ChatBot";
+            FormClosed += FormInicio_FormClosed;
             ResumeLayout(false);
+            PerformLayout();
+        }
+
+        private void FormInicio_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            //Isso faz com que caso esse fomulario seja fechado o aplicativo inteiro vai ser encerrado
+            Application.Exit(); 
         }
 
         #endregion
@@ -107,5 +130,6 @@
         private Panel panel2;
         public Button btnLogin;
         public Button btnRegistrar;
+        private Label label1;
     }
 }

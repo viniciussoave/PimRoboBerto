@@ -190,6 +190,7 @@
             MaximizeBox = false;
             Name = "FormChat";
             Text = "Chat";
+            FormClosing += FormChat_FormClosing;
             Load += Form1_Load;
             PanelChat.ResumeLayout(false);
             ResumeLayout(false);
