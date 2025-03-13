@@ -1,6 +1,6 @@
 ﻿namespace WinFormsApp2
 {
-    partial class Form1
+    partial class FormChat
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormChat));
             panel2 = new Panel();
             btnAjuda = new Button();
             BtnFeedback = new Button();
@@ -173,7 +173,7 @@
             TextBoxMsg.TabIndex = 0;
             TextBoxMsg.Text = "";
             // 
-            // Form1
+            // FormChat
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -188,7 +188,7 @@
             Controls.Add(PanelChat);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
-            Name = "Form1";
+            Name = "FormChat";
             Text = "Chat";
             Load += Form1_Load;
             PanelChat.ResumeLayout(false);
