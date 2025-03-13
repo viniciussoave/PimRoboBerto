@@ -21,6 +21,8 @@ namespace WinFormsApp2
             //Isso server pro campo só ser de uma linha mesmo sendo multiline
             textBoxUsuario.KeyPress += textBox_KeyPress;
             textBoxSenha.KeyPress += textBox_KeyPress;
+            textBoxSenha.KeyPress += textBox_enterPress;
+
         }
 
 
@@ -30,6 +32,14 @@ namespace WinFormsApp2
             if (e.KeyChar == (char)Keys.Enter || e.KeyChar == (char)Keys.Space)
             {
                 e.Handled = true; // Ignora a tecla Enter e o espaço
+            }
+        }
+
+        private void textBox_enterPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                btnEntrar_Click(1, EventArgs.Empty);
             }
         }
 
@@ -50,13 +60,29 @@ namespace WinFormsApp2
 
         private void btnEntrar_Click(object sender, EventArgs e)
         {
-            if(textBoxUsuario.Text == "teste" && textBoxSenha.Text == "1234") {
+            if (textBoxUsuario.Text == "teste" && textBoxSenha.Text == "1234")
+            {
                 _estaTrocandoTela = true;
                 this.Close();
                 FormChat Chat = new FormChat();
                 Chat.StartPosition = FormStartPosition.Manual;
                 Chat.Location = this.Location;
                 Chat.Show();
+            }
+            else
+            {
+                MessageBox.Show("Usuario ou senha incorreta!");
+            }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked)
+            {
+                textBoxSenha.PasswordChar = '\0';
+            } else
+            {
+                textBoxSenha.PasswordChar = '*';
             }
         }
     }

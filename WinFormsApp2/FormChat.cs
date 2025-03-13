@@ -71,9 +71,18 @@ namespace WinFormsApp2
             if (!_estaTrocandoTela)
             {
                 Application.Exit();
-            } else
+            }
+            else
             {
                 _estaTrocandoTela = false;
+            }
+        }
+
+        private void TextBoxMsg_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(e.KeyChar == (char)Keys.Enter)
+            {
+                BtnEnviar_Click(1, EventArgs.Empty);
             }
         }
     }

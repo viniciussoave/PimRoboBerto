@@ -168,10 +168,12 @@
             TextBoxMsg.BorderStyle = BorderStyle.FixedSingle;
             TextBoxMsg.Location = new Point(15, 604);
             TextBoxMsg.MaxLength = 36;
+            TextBoxMsg.Multiline = false;
             TextBoxMsg.Name = "TextBoxMsg";
             TextBoxMsg.Size = new Size(300, 38);
             TextBoxMsg.TabIndex = 0;
             TextBoxMsg.Text = "";
+            TextBoxMsg.KeyPress += TextBoxMsg_KeyPress;
             // 
             // FormChat
             // 

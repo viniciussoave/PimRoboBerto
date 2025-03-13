@@ -32,6 +32,7 @@
             btnEntrar = new Button();
             panel2 = new Panel();
             PanelMsgs = new Panel();
+            checkBox1 = new CheckBox();
             textBoxSenha = new TextBox();
             textBoxUsuario = new TextBox();
             labelSenha = new Label();
@@ -47,7 +48,7 @@
             btnEntrar.FlatStyle = FlatStyle.Flat;
             btnEntrar.Font = new Font("Georgia", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnEntrar.ImageAlign = ContentAlignment.TopCenter;
-            btnEntrar.Location = new Point(191, 165);
+            btnEntrar.Location = new Point(191, 191);
             btnEntrar.Margin = new Padding(1);
             btnEntrar.Name = "btnEntrar";
             btnEntrar.Size = new Size(106, 40);
@@ -71,6 +72,7 @@
             // 
             PanelMsgs.BackColor = Color.FromArgb(237, 235, 191);
             PanelMsgs.BorderStyle = BorderStyle.FixedSingle;
+            PanelMsgs.Controls.Add(checkBox1);
             PanelMsgs.Controls.Add(textBoxSenha);
             PanelMsgs.Controls.Add(textBoxUsuario);
             PanelMsgs.Controls.Add(labelSenha);
@@ -79,12 +81,23 @@
             PanelMsgs.Controls.Add(btnEntrar);
             PanelMsgs.Location = new Point(180, 396);
             PanelMsgs.Name = "PanelMsgs";
-            PanelMsgs.Size = new Size(350, 220);
+            PanelMsgs.Size = new Size(350, 256);
             PanelMsgs.TabIndex = 9;
+            // 
+            // checkBox1
+            // 
+            checkBox1.BackColor = Color.FromArgb(237, 235, 191);
+            checkBox1.Location = new Point(181, 159);
+            checkBox1.Name = "checkBox1";
+            checkBox1.Size = new Size(124, 21);
+            checkBox1.TabIndex = 19;
+            checkBox1.Text = "Mostrar senha";
+            checkBox1.UseVisualStyleBackColor = false;
+            checkBox1.CheckedChanged += checkBox1_CheckedChanged;
             // 
             // textBoxSenha
             // 
-            textBoxSenha.Location = new Point(50, 108);
+            textBoxSenha.Location = new Point(50, 117);
             textBoxSenha.MaxLength = 29;
             textBoxSenha.Multiline = true;
             textBoxSenha.Name = "textBoxSenha";
@@ -94,7 +107,7 @@
             // 
             // textBoxUsuario
             // 
-            textBoxUsuario.Location = new Point(49, 32);
+            textBoxUsuario.Location = new Point(49, 41);
             textBoxUsuario.MaxLength = 29;
             textBoxUsuario.Multiline = true;
             textBoxUsuario.Name = "textBoxUsuario";
@@ -105,7 +118,7 @@
             // 
             labelSenha.AutoSize = true;
             labelSenha.Font = new Font("Georgia", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            labelSenha.Location = new Point(125, 73);
+            labelSenha.Location = new Point(125, 82);
             labelSenha.Name = "labelSenha";
             labelSenha.Size = new Size(98, 35);
             labelSenha.TabIndex = 17;
@@ -115,7 +128,7 @@
             // 
             labelUsuario.AutoSize = true;
             labelUsuario.Font = new Font("Georgia", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            labelUsuario.Location = new Point(114, -2);
+            labelUsuario.Location = new Point(114, 7);
             labelUsuario.Name = "labelUsuario";
             labelUsuario.Size = new Size(121, 35);
             labelUsuario.TabIndex = 14;
@@ -127,7 +140,7 @@
             btnVoltar.FlatStyle = FlatStyle.Flat;
             btnVoltar.Font = new Font("Georgia", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnVoltar.ImageAlign = ContentAlignment.TopCenter;
-            btnVoltar.Location = new Point(47, 165);
+            btnVoltar.Location = new Point(47, 191);
             btnVoltar.Margin = new Padding(1);
             btnVoltar.Name = "btnVoltar";
             btnVoltar.Size = new Size(106, 40);
@@ -192,5 +205,6 @@
         private Label labelSenha;
         private TextBox textBoxSenha;
         private Label label1;
+        private CheckBox checkBox1;
     }
 }
