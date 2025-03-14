@@ -18,7 +18,7 @@ namespace WinFormsApp2
         public FormLogin()
         {
             InitializeComponent();
-            //Isso server pro campo só ser de uma linha mesmo sendo multiline
+            //Isso serve para dentro dos campos, não ser apertado o espaço e o enter funcionar para entrar.
             textBoxUsuario.KeyPress += textBox_KeyPress;
             textBoxSenha.KeyPress += textBox_KeyPress;
             textBoxSenha.KeyPress += textBox_enterPress;
