@@ -76,7 +76,7 @@
             // textBoxSenha
             // 
             textBoxSenha.Location = new Point(49, 101);
-            textBoxSenha.MaxLength = 29;
+            textBoxSenha.MaxLength = 20;
             textBoxSenha.Multiline = true;
             textBoxSenha.Name = "textBoxSenha";
             textBoxSenha.PasswordChar = '*';
@@ -96,7 +96,7 @@
             // textBoxConfirmarSenha
             // 
             textBoxConfirmarSenha.Location = new Point(49, 161);
-            textBoxConfirmarSenha.MaxLength = 29;
+            textBoxConfirmarSenha.MaxLength = 20;
             textBoxConfirmarSenha.Multiline = true;
             textBoxConfirmarSenha.Name = "textBoxConfirmarSenha";
             textBoxConfirmarSenha.PasswordChar = '*';
@@ -123,7 +123,7 @@
             // textBoxUsuario
             // 
             textBoxUsuario.Location = new Point(49, 41);
-            textBoxUsuario.MaxLength = 29;
+            textBoxUsuario.MaxLength = 20;
             textBoxUsuario.Multiline = true;
             textBoxUsuario.Name = "textBoxUsuario";
             textBoxUsuario.Size = new Size(248, 27);
