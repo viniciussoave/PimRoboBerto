@@ -18,7 +18,6 @@
                 components.Dispose();
             }
             base.Dispose(disposing);
-            Application.Exit();
         }
 
         #region Windows Form Designer generated code
@@ -31,18 +30,18 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormRegistrar));
             PanelMsgs = new Panel();
+            textBoxEmail = new TextBox();
             textBoxSenha = new TextBox();
+            labelConfirmarSenha = new Label();
+            textBoxConfirmarSenha = new TextBox();
+            btnVoltar = new Button();
             textBoxUsuario = new TextBox();
+            btnRegistrar = new Button();
             labelSenha = new Label();
             labelUsuario = new Label();
-            btnVoltar = new Button();
-            btnEntrar = new Button();
+            labelEmail = new Label();
             label1 = new Label();
             panel2 = new Panel();
-            textBox1 = new TextBox();
-            labelConfirmarSenha = new Label();
-            textBox2 = new TextBox();
-            labelEmail = new Label();
             PanelMsgs.SuspendLayout();
             SuspendLayout();
             // 
@@ -50,13 +49,13 @@
             // 
             PanelMsgs.BackColor = Color.FromArgb(237, 235, 191);
             PanelMsgs.BorderStyle = BorderStyle.FixedSingle;
-            PanelMsgs.Controls.Add(textBox2);
+            PanelMsgs.Controls.Add(textBoxEmail);
             PanelMsgs.Controls.Add(textBoxSenha);
             PanelMsgs.Controls.Add(labelConfirmarSenha);
-            PanelMsgs.Controls.Add(textBox1);
+            PanelMsgs.Controls.Add(textBoxConfirmarSenha);
             PanelMsgs.Controls.Add(btnVoltar);
             PanelMsgs.Controls.Add(textBoxUsuario);
-            PanelMsgs.Controls.Add(btnEntrar);
+            PanelMsgs.Controls.Add(btnRegistrar);
             PanelMsgs.Controls.Add(labelSenha);
             PanelMsgs.Controls.Add(labelUsuario);
             PanelMsgs.Controls.Add(labelEmail);
@@ -64,6 +63,15 @@
             PanelMsgs.Name = "PanelMsgs";
             PanelMsgs.Size = new Size(350, 306);
             PanelMsgs.TabIndex = 13;
+            // 
+            // textBoxEmail
+            // 
+            textBoxEmail.Location = new Point(50, 219);
+            textBoxEmail.MaxLength = 29;
+            textBoxEmail.Multiline = true;
+            textBoxEmail.Name = "textBoxEmail";
+            textBoxEmail.Size = new Size(248, 27);
+            textBoxEmail.TabIndex = 22;
             // 
             // textBoxSenha
             // 
@@ -75,6 +83,43 @@
             textBoxSenha.Size = new Size(248, 27);
             textBoxSenha.TabIndex = 18;
             // 
+            // labelConfirmarSenha
+            // 
+            labelConfirmarSenha.AutoSize = true;
+            labelConfirmarSenha.Font = new Font("Georgia", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            labelConfirmarSenha.Location = new Point(55, 126);
+            labelConfirmarSenha.Name = "labelConfirmarSenha";
+            labelConfirmarSenha.Size = new Size(238, 35);
+            labelConfirmarSenha.TabIndex = 21;
+            labelConfirmarSenha.Text = "Confirmar senha";
+            // 
+            // textBoxConfirmarSenha
+            // 
+            textBoxConfirmarSenha.Location = new Point(49, 161);
+            textBoxConfirmarSenha.MaxLength = 29;
+            textBoxConfirmarSenha.Multiline = true;
+            textBoxConfirmarSenha.Name = "textBoxConfirmarSenha";
+            textBoxConfirmarSenha.PasswordChar = '*';
+            textBoxConfirmarSenha.Size = new Size(248, 27);
+            textBoxConfirmarSenha.TabIndex = 20;
+            // 
+            // btnVoltar
+            // 
+            btnVoltar.BackColor = Color.FromArgb(249, 239, 168);
+            btnVoltar.FlatStyle = FlatStyle.Flat;
+            btnVoltar.Font = new Font("Georgia", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnVoltar.ImageAlign = ContentAlignment.TopCenter;
+            btnVoltar.Location = new Point(49, 253);
+            btnVoltar.Margin = new Padding(1);
+            btnVoltar.Name = "btnVoltar";
+            btnVoltar.Size = new Size(106, 40);
+            btnVoltar.TabIndex = 12;
+            btnVoltar.TabStop = false;
+            btnVoltar.Text = "Voltar";
+            btnVoltar.TextImageRelation = TextImageRelation.TextAboveImage;
+            btnVoltar.UseVisualStyleBackColor = false;
+            btnVoltar.Click += btnVoltar_Click;
+            // 
             // textBoxUsuario
             // 
             textBoxUsuario.Location = new Point(49, 41);
@@ -83,6 +128,23 @@
             textBoxUsuario.Name = "textBoxUsuario";
             textBoxUsuario.Size = new Size(248, 27);
             textBoxUsuario.TabIndex = 11;
+            // 
+            // btnRegistrar
+            // 
+            btnRegistrar.BackColor = Color.FromArgb(249, 239, 168);
+            btnRegistrar.FlatStyle = FlatStyle.Flat;
+            btnRegistrar.Font = new Font("Georgia", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnRegistrar.ImageAlign = ContentAlignment.TopCenter;
+            btnRegistrar.Location = new Point(180, 253);
+            btnRegistrar.Margin = new Padding(1);
+            btnRegistrar.Name = "btnRegistrar";
+            btnRegistrar.Size = new Size(119, 40);
+            btnRegistrar.TabIndex = 11;
+            btnRegistrar.TabStop = false;
+            btnRegistrar.Text = "Registrar";
+            btnRegistrar.TextImageRelation = TextImageRelation.TextAboveImage;
+            btnRegistrar.UseVisualStyleBackColor = false;
+            btnRegistrar.Click += btnRegistrar_Click;
             // 
             // labelSenha
             // 
@@ -104,37 +166,15 @@
             labelUsuario.TabIndex = 14;
             labelUsuario.Text = "Usuario";
             // 
-            // btnVoltar
+            // labelEmail
             // 
-            btnVoltar.BackColor = Color.FromArgb(249, 239, 168);
-            btnVoltar.FlatStyle = FlatStyle.Flat;
-            btnVoltar.Font = new Font("Georgia", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnVoltar.ImageAlign = ContentAlignment.TopCenter;
-            btnVoltar.Location = new Point(49, 253);
-            btnVoltar.Margin = new Padding(1);
-            btnVoltar.Name = "btnVoltar";
-            btnVoltar.Size = new Size(106, 40);
-            btnVoltar.TabIndex = 12;
-            btnVoltar.TabStop = false;
-            btnVoltar.Text = "Voltar";
-            btnVoltar.TextImageRelation = TextImageRelation.TextAboveImage;
-            btnVoltar.UseVisualStyleBackColor = false;
-            // 
-            // btnEntrar
-            // 
-            btnEntrar.BackColor = Color.FromArgb(249, 239, 168);
-            btnEntrar.FlatStyle = FlatStyle.Flat;
-            btnEntrar.Font = new Font("Georgia", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnEntrar.ImageAlign = ContentAlignment.TopCenter;
-            btnEntrar.Location = new Point(180, 253);
-            btnEntrar.Margin = new Padding(1);
-            btnEntrar.Name = "btnEntrar";
-            btnEntrar.Size = new Size(119, 40);
-            btnEntrar.TabIndex = 11;
-            btnEntrar.TabStop = false;
-            btnEntrar.Text = "Registrar";
-            btnEntrar.TextImageRelation = TextImageRelation.TextAboveImage;
-            btnEntrar.UseVisualStyleBackColor = false;
+            labelEmail.AutoSize = true;
+            labelEmail.Font = new Font("Georgia", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            labelEmail.Location = new Point(122, 187);
+            labelEmail.Name = "labelEmail";
+            labelEmail.Size = new Size(105, 35);
+            labelEmail.TabIndex = 25;
+            labelEmail.Text = "E-mail";
             // 
             // label1
             // 
@@ -155,46 +195,6 @@
             panel2.Size = new Size(250, 250);
             panel2.TabIndex = 14;
             // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(49, 161);
-            textBox1.MaxLength = 29;
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.PasswordChar = '*';
-            textBox1.Size = new Size(248, 27);
-            textBox1.TabIndex = 20;
-            // 
-            // labelConfirmarSenha
-            // 
-            labelConfirmarSenha.AutoSize = true;
-            labelConfirmarSenha.Font = new Font("Georgia", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            labelConfirmarSenha.Location = new Point(55, 126);
-            labelConfirmarSenha.Name = "labelConfirmarSenha";
-            labelConfirmarSenha.Size = new Size(238, 35);
-            labelConfirmarSenha.TabIndex = 21;
-            labelConfirmarSenha.Text = "Confirmar senha";
-            // 
-            // textBox2
-            // 
-            textBox2.Location = new Point(50, 219);
-            textBox2.MaxLength = 29;
-            textBox2.Multiline = true;
-            textBox2.Name = "textBox2";
-            textBox2.PasswordChar = '*';
-            textBox2.Size = new Size(248, 27);
-            textBox2.TabIndex = 22;
-            // 
-            // labelEmail
-            // 
-            labelEmail.AutoSize = true;
-            labelEmail.Font = new Font("Georgia", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            labelEmail.Location = new Point(122, 187);
-            labelEmail.Name = "labelEmail";
-            labelEmail.Size = new Size(105, 35);
-            labelEmail.TabIndex = 25;
-            labelEmail.Text = "E-mail";
-            // 
             // FormRegistrar
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -208,6 +208,7 @@
             MaximizeBox = false;
             Name = "FormRegistrar";
             Text = "Registro - RoboBerto ChatBot";
+            FormClosing += FormRegistrar_FormClosing;
             Load += FormRegistrar_Load;
             PanelMsgs.ResumeLayout(false);
             PanelMsgs.PerformLayout();
@@ -215,18 +216,30 @@
             PerformLayout();
         }
 
+        private void FormRegistrar_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!_estaTrocandoTela)
+            {
+                Application.Exit();
+            }
+            else
+            {
+                _estaTrocandoTela = false;
+            }
+        }
+
         #endregion
 
         private Panel PanelMsgs;
-        private TextBox textBox2;
+        private TextBox textBoxEmail;
         private TextBox textBoxSenha;
         private Label labelConfirmarSenha;
-        private TextBox textBox1;
+        private TextBox textBoxConfirmarSenha;
         private TextBox textBoxUsuario;
         private Label labelSenha;
         private Label labelUsuario;
         public Button btnVoltar;
-        public Button btnEntrar;
+        public Button btnRegistrar;
         private Label label1;
         private Panel panel2;
         private Label labelEmail;
