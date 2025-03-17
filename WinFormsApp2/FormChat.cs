@@ -1,4 +1,6 @@
+using System;
 using System.Drawing.Drawing2D;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
 namespace WinFormsApp2
 {
@@ -80,10 +82,32 @@ namespace WinFormsApp2
 
         private void TextBoxMsg_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if(e.KeyChar == (char)Keys.Enter)
+            if (e.KeyChar == (char)Keys.Enter)
             {
                 BtnEnviar_Click(1, EventArgs.Empty);
             }
+        }
+
+        private void btnHistorico_Click(object sender, EventArgs e)
+        {
+            _estaTrocandoTela = true;
+            this.Close();
+            Historico chat2 = new Historico();
+            chat2.StartPosition = FormStartPosition.Manual;
+            chat2.Location = this.Location;
+            chat2.Show();
+
+        }
+
+        private void btnVoltar_Click(object sender, EventArgs e)
+
+        {
+            _estaTrocandoTela = true;
+            this.Close();
+            FormInicio Inicio = new FormInicio();
+            Inicio.StartPosition = FormStartPosition.Manual;
+            Inicio.Location = this.Location;
+            Inicio.Show();
         }
     }
 }

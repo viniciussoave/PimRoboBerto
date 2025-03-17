@@ -37,5 +37,10 @@ namespace WinFormsApp2
             registro.Show();
 
         }
+
+        private void FormInicio_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

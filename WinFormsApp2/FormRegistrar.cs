@@ -80,9 +80,10 @@ namespace WinFormsApp2
             if (textBoxUsuario.Text.Length == 0 || textBoxSenha.Text.Length == 0 || textBoxConfirmarSenha.Text.Length == 0 || textBoxEmail.Text.Length == 0)
             {
                 MessageBox.Show("Erro: Preencha todos os campos!");
-            } else
+            }
+            else
             {
-                if(textBoxUsuario.Text.Length < 5 || textBoxUsuario.Text.Length > 20)
+                if (textBoxUsuario.Text.Length < 5 || textBoxUsuario.Text.Length > 20)
                 {
                     //Verificar a quantidade de caracteres do usuario
                     MessageBox.Show("Erro: O usuario tem que ter pelo menos 5 caracteres e no maximo 20 caracteres!");
@@ -97,7 +98,8 @@ namespace WinFormsApp2
                     else
                     {
                         //Verifica se na senha tem numeros e simbolos.
-                        if (!ContemDigitoEspecialOuNumero(textBoxSenha.Text)){
+                        if (!ContemDigitoEspecialOuNumero(textBoxSenha.Text))
+                        {
                             MessageBox.Show("Erro: A senha deve conter números e símbolos.");
                         }
                         else
@@ -124,7 +126,7 @@ namespace WinFormsApp2
                                     else
                                     {
                                         //Verificar se o e-mail já esta em uso
-                                        if (textBoxEmail.Text == "vini.bico@hotmail.com") 
+                                        if (textBoxEmail.Text == "vini.bico@hotmail.com")
                                         {
                                             MessageBox.Show("Erro: Email já esta em uso!");
                                         }
@@ -147,12 +149,17 @@ namespace WinFormsApp2
                 }
             }
 
-            
 
 
-            
-                }
-            }
+
+
         }
+
+        private void textBoxUsuario_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+    }
+}
     
 
