@@ -91,7 +91,13 @@ namespace WinFormsApp2
                 else
                 {
                     //Aqui vai ser feito uma verificação no DB se o usuario já esta em uso
-                    if (textBoxUsuario.Text == "teste")
+                    connectionDB db = new connectionDB();
+                    db.openConnection();
+                    List<string> numRows = new List<string>();
+                    db.select(numRows, $"SELECT nome FROM usuario WHERE nome = '{textBoxUsuario.Text}'");
+                    db.closeConnection();
+
+                    if (numRows.Count == 1)
                     {
                         MessageBox.Show("Erro: Usuario já esta em uso!");
                     }
@@ -125,8 +131,12 @@ namespace WinFormsApp2
                                     }
                                     else
                                     {
+                                        numRows.Clear();
+                                        db.openConnection();
+                                        db.select(numRows, $"SELECT email FROM usuario WHERE email = '{textBoxEmail.Text}'");
+                                        db.closeConnection();
                                         //Verificar se o e-mail já esta em uso
-                                        if (textBoxEmail.Text == "vini.bico@hotmail.com")
+                                        if (numRows.Count == 1)
                                         {
                                             MessageBox.Show("Erro: Email já esta em uso!");
                                         }

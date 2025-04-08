@@ -98,7 +98,7 @@
             // textBoxSenha
             // 
             textBoxSenha.Location = new Point(50, 117);
-            textBoxSenha.MaxLength = 29;
+            textBoxSenha.MaxLength = 20;
             textBoxSenha.Multiline = true;
             textBoxSenha.Name = "textBoxSenha";
             textBoxSenha.PasswordChar = '*';

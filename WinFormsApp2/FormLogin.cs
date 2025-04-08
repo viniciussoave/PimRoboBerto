@@ -60,7 +60,14 @@ namespace WinFormsApp2
 
         private void btnEntrar_Click(object sender, EventArgs e)
         {
-            if (textBoxUsuario.Text == "teste" && textBoxSenha.Text == "1234")
+            connectionDB db = new connectionDB();
+            List<string> numRows = new List<string>();
+            db.openConnection();
+            db.select(numRows, $"SELECT id,nome,senha FROM usuario WHERE nome = '{textBoxUsuario.Text}' AND senha = '{textBoxSenha.Text}'");
+            db.closeConnection();
+        
+
+            if (numRows.Count == 3)
             {
                 _estaTrocandoTela = true;
                 this.Close();
@@ -70,7 +77,7 @@ namespace WinFormsApp2
                 Chat.Show();
             }
             else
-            {
+            {   
                 MessageBox.Show("Usuario ou senha incorreta!");
             }
         }
