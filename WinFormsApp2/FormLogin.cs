@@ -24,8 +24,6 @@ namespace WinFormsApp2
             textBoxSenha.KeyPress += textBox_enterPress;
 
         }
-
-
         private void textBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Impede que o usuário pressione Enter para criar uma nova linha
@@ -50,47 +48,26 @@ namespace WinFormsApp2
 
         private void btnVoltar_Click(object sender, EventArgs e)
         {
-            _estaTrocandoTela = true;
-            this.Close();
-            FormInicio Inicio = new FormInicio();
-            Inicio.StartPosition = FormStartPosition.Manual;
-            Inicio.Location = this.Location;
-            Inicio.Show();
+        //    _estaTrocandoTela = true;
+        //    this.Close();
+        //    FormInicio Inicio = new FormInicio();
+        //    Inicio.StartPosition = FormStartPosition.Manual;
+        //    Inicio.Location = this.Location;
+        //    Inicio.Show();
         }
 
         private void btnEntrar_Click(object sender, EventArgs e)
         {
-            connectionDB db = new connectionDB();
-            List<string> numRows = new List<string>();
-            db.openConnection();
-            db.select(numRows, $"SELECT id,nome,senha FROM usuario WHERE nome = '{textBoxUsuario.Text}' AND senha = '{textBoxSenha.Text}'");
-            db.closeConnection();
-        
 
-            if (numRows.Count == 3)
-            {
-                _estaTrocandoTela = true;
-                this.Close();
-                FormChat Chat = new FormChat();
-                Chat.StartPosition = FormStartPosition.Manual;
-                Chat.Location = this.Location;
-                Chat.Show();
-            }
-            else
-            {   
-                MessageBox.Show("Usuario ou senha incorreta!");
-            }
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBox1.Checked)
-            {
-                textBoxSenha.PasswordChar = '\0';
-            } else
-            {
-                textBoxSenha.PasswordChar = '*';
-            }
+        }
+
+        private void textBoxUsuario_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

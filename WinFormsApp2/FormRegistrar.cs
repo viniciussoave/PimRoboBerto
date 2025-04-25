@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Aplicação;
+using Aplicação.Casos_de_Uso;
+using Aplicação.DTOs;
+using Aplicação.Interfaces_Caso_De_Uso;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,16 +18,22 @@ namespace WinFormsApp2
     public partial class FormRegistrar : Form
     {
 
-        private bool _estaTrocandoTela = false;
+        private FormInicio _formInicio;
 
-        public FormRegistrar()
+        private readonly IRegistrarUsuarioUseCase _registrarUsuarioUseCase;
+
+        public FormRegistrar(IRegistrarUsuarioUseCase registrarUsuarioUseCase)
         {
+            _registrarUsuarioUseCase = registrarUsuarioUseCase;
             InitializeComponent();
             textBoxUsuario.KeyPress += textBox_KeyPress;
             textBoxSenha.KeyPress += textBox_KeyPress;
             textBoxConfirmarSenha.KeyPress += textBox_KeyPress;
             textBoxEmail.KeyPress += textBox_KeyPress;
+
         }
+
+        private bool _estaTrocandoTela = false;
 
         private void textBox_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -57,8 +67,6 @@ namespace WinFormsApp2
             string padrao = @"[\d\W]";
             return Regex.IsMatch(senha, padrao);
         }
-
-
         private void FormRegistrar_Load(object sender, EventArgs e)
         {
 
@@ -66,110 +74,70 @@ namespace WinFormsApp2
 
         private void btnVoltar_Click(object sender, EventArgs e)
         {
-            _estaTrocandoTela = true;
-            this.Close();
-            FormInicio Inicio = new FormInicio();
-            Inicio.StartPosition = FormStartPosition.Manual;
-            Inicio.Location = this.Location;
-            Inicio.Show();
+             _estaTrocandoTela = true;
+             this.Close();
+            _formInicio = new FormInicio(_registrarUsuarioUseCase);
+            _formInicio.StartPosition = FormStartPosition.Manual;
+            _formInicio.Location = this.Location;
+            _formInicio.Show();
         }
 
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
-            //Verificar se todos os campos estão preenchidos
-            if (textBoxUsuario.Text.Length == 0 || textBoxSenha.Text.Length == 0 || textBoxConfirmarSenha.Text.Length == 0 || textBoxEmail.Text.Length == 0)
+            if (string.IsNullOrEmpty(textBoxEmail.Text) || string.IsNullOrEmpty(textBoxSenha.Text) || string.IsNullOrEmpty(textBoxUsuario.Text) || string.IsNullOrEmpty(textBoxEmail.Text))
             {
-                MessageBox.Show("Erro: Preencha todos os campos!");
-            }
-            else
-            {
-                if (textBoxUsuario.Text.Length < 5 || textBoxUsuario.Text.Length > 20)
-                {
-                    //Verificar a quantidade de caracteres do usuario
-                    MessageBox.Show("Erro: O usuario tem que ter pelo menos 5 caracteres e no maximo 20 caracteres!");
-                }
-                else
-                {
-                    //Aqui vai ser feito uma verificação no DB se o usuario já esta em uso
-                    connectionDB db = new connectionDB();
-                    db.openConnection();
-                    List<string> numRows = new List<string>();
-                    db.select(numRows, $"SELECT nome FROM usuario WHERE nome = '{textBoxUsuario.Text}'");
-                    db.closeConnection();
 
-                    if (numRows.Count == 1)
-                    {
-                        MessageBox.Show("Erro: Usuario já esta em uso!");
-                    }
-                    else
-                    {
-                        //Verifica se na senha tem numeros e simbolos.
-                        if (!ContemDigitoEspecialOuNumero(textBoxSenha.Text))
-                        {
-                            MessageBox.Show("Erro: A senha deve conter números e símbolos.");
-                        }
-                        else
-                        {
-                            //Verificar a quantidade de caracteres da senha
-                            if (textBoxSenha.Text.Length < 5 || textBoxSenha.Text.Length > 20)
-                            {
-                                MessageBox.Show("Erro: A senha tem que ter pelo menos 5 caracteres e no maximo 20 caracteres!");
-                            }
-                            else
-                            {
-                                //Verificar se as duas senhas estão iguais
-                                if (textBoxSenha.Text != textBoxConfirmarSenha.Text)
-                                {
-                                    MessageBox.Show("Erro: As senhas não coincidem!");
-                                }
-                                else
-                                {
-                                    //Verifica se o e-mail é valido
-                                    if (!IsValidEmail(textBoxEmail.Text))
-                                    {
-                                        MessageBox.Show("Erro: Insira um e-mail valido!");
-                                    }
-                                    else
-                                    {
-                                        numRows.Clear();
-                                        db.openConnection();
-                                        db.select(numRows, $"SELECT email FROM usuario WHERE email = '{textBoxEmail.Text}'");
-                                        db.closeConnection();
-                                        //Verificar se o e-mail já esta em uso
-                                        if (numRows.Count == 1)
-                                        {
-                                            MessageBox.Show("Erro: Email já esta em uso!");
-                                        }
-                                        else
-                                        {
-                                            //Deu tudo certo
-                                            _estaTrocandoTela = true;
-                                            this.Close();
-                                            MessageBox.Show("Conta criada com sucesso!");
-                                            FormInicio Inicio = new FormInicio();
-                                            Inicio.StartPosition = FormStartPosition.Manual;
-                                            Inicio.Location = this.Location;
-                                            Inicio.Show();
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+
+                MessageBox.Show("Preencha todos os dados obrigatórios!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            if (!textBoxSenha.Text.Equals(textBoxConfirmarSenha.Text))
+            {
+                MessageBox.Show("Senhas diferentes! Tente Novamente", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
             }
 
 
+            var usuarioDto = new UsuarioDTO
+            {
+                Email = textBoxEmail.Text,
+                Nome = textBoxUsuario.Text,
+                Senha = textBoxSenha.Text,
+            };
 
+            var resposta = _registrarUsuarioUseCase.Executar(usuarioDto);
 
+            MessageBoxIcon icone = resposta.Procede ? MessageBoxIcon.Information : MessageBoxIcon.Warning;
+            MessageBox.Show(resposta.Dados, resposta.Mensagem, MessageBoxButtons.OK, icone);
+            if (resposta.Procede)
+            {
+                LimparCampos();
+            }
+        }
+        private void textBoxUsuario_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void textBoxConfirmarSenha_TextChanged(object sender, EventArgs e)
+        {
+        }
+        private void LimparCampos()
+        {
+            textBoxEmail.Clear();
+            textBoxUsuario.Clear();
+            textBoxSenha.Clear();
+            textBoxConfirmarSenha.Clear();
+        }
+
+        private void textBoxSenha_TextChanged(object sender, EventArgs e)
+        {
 
         }
 
-        private void textBoxUsuario_TextChanged(object sender, EventArgs e)
+        private void textBoxEmail_TextChanged(object sender, EventArgs e)
         {
 
         }
     }
 }
-    
-

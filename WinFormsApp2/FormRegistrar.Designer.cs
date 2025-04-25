@@ -59,53 +59,52 @@
             PanelMsgs.Controls.Add(labelSenha);
             PanelMsgs.Controls.Add(labelUsuario);
             PanelMsgs.Controls.Add(labelEmail);
-            PanelMsgs.Location = new Point(158, 263);
-            PanelMsgs.Margin = new Padding(3, 2, 3, 2);
+            PanelMsgs.Location = new Point(181, 351);
             PanelMsgs.Name = "PanelMsgs";
-            PanelMsgs.Size = new Size(306, 230);
+            PanelMsgs.Size = new Size(349, 306);
             PanelMsgs.TabIndex = 13;
             // 
             // textBoxEmail
             // 
-            textBoxEmail.Location = new Point(44, 164);
-            textBoxEmail.Margin = new Padding(3, 2, 3, 2);
+            textBoxEmail.Location = new Point(50, 219);
             textBoxEmail.MaxLength = 50;
             textBoxEmail.Multiline = true;
             textBoxEmail.Name = "textBoxEmail";
-            textBoxEmail.Size = new Size(218, 21);
+            textBoxEmail.Size = new Size(249, 27);
             textBoxEmail.TabIndex = 22;
+            textBoxEmail.TextChanged += textBoxEmail_TextChanged;
             // 
             // textBoxSenha
             // 
-            textBoxSenha.Location = new Point(43, 76);
-            textBoxSenha.Margin = new Padding(3, 2, 3, 2);
+            textBoxSenha.Location = new Point(49, 101);
             textBoxSenha.MaxLength = 20;
             textBoxSenha.Multiline = true;
             textBoxSenha.Name = "textBoxSenha";
             textBoxSenha.PasswordChar = '*';
-            textBoxSenha.Size = new Size(218, 21);
+            textBoxSenha.Size = new Size(249, 27);
             textBoxSenha.TabIndex = 18;
+            textBoxSenha.TextChanged += textBoxSenha_TextChanged;
             // 
             // labelConfirmarSenha
             // 
             labelConfirmarSenha.AutoSize = true;
             labelConfirmarSenha.Font = new Font("Georgia", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            labelConfirmarSenha.Location = new Point(48, 94);
+            labelConfirmarSenha.Location = new Point(55, 125);
             labelConfirmarSenha.Name = "labelConfirmarSenha";
-            labelConfirmarSenha.Size = new Size(191, 29);
+            labelConfirmarSenha.Size = new Size(238, 35);
             labelConfirmarSenha.TabIndex = 21;
             labelConfirmarSenha.Text = "Confirmar senha";
             // 
             // textBoxConfirmarSenha
             // 
-            textBoxConfirmarSenha.Location = new Point(43, 121);
-            textBoxConfirmarSenha.Margin = new Padding(3, 2, 3, 2);
+            textBoxConfirmarSenha.Location = new Point(49, 161);
             textBoxConfirmarSenha.MaxLength = 20;
             textBoxConfirmarSenha.Multiline = true;
             textBoxConfirmarSenha.Name = "textBoxConfirmarSenha";
             textBoxConfirmarSenha.PasswordChar = '*';
-            textBoxConfirmarSenha.Size = new Size(218, 21);
+            textBoxConfirmarSenha.Size = new Size(249, 27);
             textBoxConfirmarSenha.TabIndex = 20;
+            textBoxConfirmarSenha.TextChanged += textBoxConfirmarSenha_TextChanged;
             // 
             // btnVoltar
             // 
@@ -113,10 +112,10 @@
             btnVoltar.FlatStyle = FlatStyle.Flat;
             btnVoltar.Font = new Font("Georgia", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnVoltar.ImageAlign = ContentAlignment.TopCenter;
-            btnVoltar.Location = new Point(43, 190);
+            btnVoltar.Location = new Point(49, 253);
             btnVoltar.Margin = new Padding(1);
             btnVoltar.Name = "btnVoltar";
-            btnVoltar.Size = new Size(93, 30);
+            btnVoltar.Size = new Size(106, 40);
             btnVoltar.TabIndex = 12;
             btnVoltar.TabStop = false;
             btnVoltar.Text = "Voltar";
@@ -126,12 +125,11 @@
             // 
             // textBoxUsuario
             // 
-            textBoxUsuario.Location = new Point(43, 31);
-            textBoxUsuario.Margin = new Padding(3, 2, 3, 2);
+            textBoxUsuario.Location = new Point(49, 41);
             textBoxUsuario.MaxLength = 20;
             textBoxUsuario.Multiline = true;
             textBoxUsuario.Name = "textBoxUsuario";
-            textBoxUsuario.Size = new Size(218, 21);
+            textBoxUsuario.Size = new Size(249, 27);
             textBoxUsuario.TabIndex = 11;
             textBoxUsuario.TextChanged += textBoxUsuario_TextChanged;
             // 
@@ -141,10 +139,10 @@
             btnRegistrar.FlatStyle = FlatStyle.Flat;
             btnRegistrar.Font = new Font("Georgia", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnRegistrar.ImageAlign = ContentAlignment.TopCenter;
-            btnRegistrar.Location = new Point(158, 190);
+            btnRegistrar.Location = new Point(181, 253);
             btnRegistrar.Margin = new Padding(1);
             btnRegistrar.Name = "btnRegistrar";
-            btnRegistrar.Size = new Size(104, 30);
+            btnRegistrar.Size = new Size(119, 40);
             btnRegistrar.TabIndex = 11;
             btnRegistrar.TabStop = false;
             btnRegistrar.Text = "Registrar";
@@ -156,9 +154,9 @@
             // 
             labelSenha.AutoSize = true;
             labelSenha.Font = new Font("Georgia", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            labelSenha.Location = new Point(110, 49);
+            labelSenha.Location = new Point(126, 65);
             labelSenha.Name = "labelSenha";
-            labelSenha.Size = new Size(78, 29);
+            labelSenha.Size = new Size(98, 35);
             labelSenha.TabIndex = 17;
             labelSenha.Text = "Senha";
             // 
@@ -166,9 +164,9 @@
             // 
             labelUsuario.AutoSize = true;
             labelUsuario.Font = new Font("Georgia", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            labelUsuario.Location = new Point(100, 5);
+            labelUsuario.Location = new Point(114, 7);
             labelUsuario.Name = "labelUsuario";
-            labelUsuario.Size = new Size(97, 29);
+            labelUsuario.Size = new Size(121, 35);
             labelUsuario.TabIndex = 14;
             labelUsuario.Text = "Usuario";
             // 
@@ -176,9 +174,9 @@
             // 
             labelEmail.AutoSize = true;
             labelEmail.Font = new Font("Georgia", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            labelEmail.Location = new Point(107, 140);
+            labelEmail.Location = new Point(122, 187);
             labelEmail.Name = "labelEmail";
-            labelEmail.Size = new Size(85, 29);
+            labelEmail.Size = new Size(105, 35);
             labelEmail.TabIndex = 25;
             labelEmail.Text = "E-mail";
             // 
@@ -186,9 +184,9 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Georgia", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(150, 226);
+            label1.Location = new Point(171, 301);
             label1.Name = "label1";
-            label1.Size = new Size(292, 38);
+            label1.Size = new Size(367, 46);
             label1.TabIndex = 15;
             label1.Text = "RoboBerto ChatBot";
             // 
@@ -196,23 +194,21 @@
             // 
             panel2.BackgroundImage = (Image)resources.GetObject("panel2.BackgroundImage");
             panel2.BackgroundImageLayout = ImageLayout.Stretch;
-            panel2.Location = new Point(201, 30);
-            panel2.Margin = new Padding(3, 2, 3, 2);
+            panel2.Location = new Point(230, 40);
             panel2.Name = "panel2";
-            panel2.Size = new Size(219, 188);
+            panel2.Size = new Size(250, 251);
             panel2.TabIndex = 14;
             // 
             // FormRegistrar
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(621, 511);
+            ClientSize = new Size(710, 681);
             Controls.Add(PanelMsgs);
             Controls.Add(label1);
             Controls.Add(panel2);
             FormBorderStyle = FormBorderStyle.FixedSingle;
-            Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
             Name = "FormRegistrar";
             Text = "Registro - RoboBerto ChatBot";

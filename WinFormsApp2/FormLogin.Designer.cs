@@ -113,6 +113,7 @@
             textBoxUsuario.Name = "textBoxUsuario";
             textBoxUsuario.Size = new Size(248, 37);
             textBoxUsuario.TabIndex = 11;
+            textBoxUsuario.TextChanged += textBoxUsuario_TextChanged;
             // 
             // labelSenha
             // 

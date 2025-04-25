@@ -102,12 +102,12 @@ namespace WinFormsApp2
         private void btnVoltar_Click(object sender, EventArgs e)
 
         {
-            _estaTrocandoTela = true;
-            this.Close();
-            FormInicio Inicio = new FormInicio();
-            Inicio.StartPosition = FormStartPosition.Manual;
-            Inicio.Location = this.Location;
-            Inicio.Show();
+          // _estaTrocandoTela = true;
+          // this.Close();
+          // FormInicio Inicio = new FormInicio();
+          // Inicio.StartPosition = FormStartPosition.Manual;
+          // Inicio.Location = this.Location;
+          // Inicio.Show();
         }
     }
 }

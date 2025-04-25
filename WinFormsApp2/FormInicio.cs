@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Aplicação.Interfaces_Caso_De_Uso;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,35 +13,32 @@ namespace WinFormsApp2
 {
     public partial class FormInicio : Form
     {
-        public FormInicio()
-        {
-            InitializeComponent();
-        }
+        private FormRegistrar _frmRegistrar;
 
+        private readonly IRegistrarUsuarioUseCase _registrarUsuarioUseCase;
+
+        public FormInicio(IRegistrarUsuarioUseCase registrarUsuarioUseCase)
+        {
+            _registrarUsuarioUseCase = registrarUsuarioUseCase;
+            InitializeComponent();
+
+        }
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            //Transfere o usuario da tela inicial para a tela de login
             this.Hide();
             FormLogin login = new FormLogin();
             login.StartPosition = FormStartPosition.Manual;
             login.Location = this.Location;
             login.Show();
         }
-
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
-            //Transfere o usuario da tela inicial para a tela de registro
             this.Hide();
-            FormRegistrar registro = new FormRegistrar();
-            registro.StartPosition = FormStartPosition.Manual;
-            registro.Location = this.Location;
-            registro.Show();
-
+            _frmRegistrar =  new FormRegistrar(_registrarUsuarioUseCase);
+            _frmRegistrar.ShowDialog();
         }
-
         private void FormInicio_Load(object sender, EventArgs e)
         {
-
         }
     }
 }
