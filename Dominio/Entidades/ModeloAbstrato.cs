@@ -19,6 +19,11 @@ namespace Dominio.Entidades
             Id = Guid.NewGuid();
             DataCriacao = DateTime.Now;
         }
+        public ModeloAbstrato(Guid id, DateTime dataCriacao)
+        {
+            Id = id;
+            DataCriacao = dataCriacao;
+        }
 
         public IReadOnlyCollection<Notificacao> Notificacoes => listaNotificacoes;
         protected void SetNotificacoesLista(List<Notificacao> notificacoes)

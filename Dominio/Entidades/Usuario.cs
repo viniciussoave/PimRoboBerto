@@ -21,9 +21,20 @@ namespace Dominio.Entidades
             Senha = senha;
             Email = email;
         }
+
+        public Usuario(Guid id, DateTime dataCriacao, string nome, string senha, string email) : base(id,dataCriacao)
+        {
+            Nome = nome;
+            Senha = senha;
+            Email = email;
+        }
         public static Usuario CriarModelo(string nome, string senha, string email)
         {
             return new Usuario(nome, senha, email);
+        }
+        public static Usuario CriarModeloDoBanco(Guid id, DateTime dataCriacao, string nome, string senha, string email)
+        {
+            return new Usuario(id, dataCriacao, nome, senha, email);
         }
 
         public override bool Validacao(out string erros)
@@ -38,6 +49,11 @@ namespace Dominio.Entidades
                 return false;
             }
             return true;
+        }
+
+        public bool VerificarSenha(string senhaDigitada)
+        {
+            return Senha == senhaDigitada; // ou aplicar hash antes de comparar
         }
     }
 }

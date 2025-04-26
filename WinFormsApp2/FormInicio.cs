@@ -16,9 +16,11 @@ namespace WinFormsApp2
         private FormRegistrar _frmRegistrar;
 
         private readonly IRegistrarUsuarioUseCase _registrarUsuarioUseCase;
+        private readonly IRealizarLoginUseCase _realizarLoginUsecase;
 
-        public FormInicio(IRegistrarUsuarioUseCase registrarUsuarioUseCase)
+        public FormInicio(IRegistrarUsuarioUseCase registrarUsuarioUseCase, IRealizarLoginUseCase realizarLoginUseCase)
         {
+            _realizarLoginUsecase = realizarLoginUseCase;
             _registrarUsuarioUseCase = registrarUsuarioUseCase;
             InitializeComponent();
 
@@ -26,7 +28,7 @@ namespace WinFormsApp2
         private void btnLogin_Click(object sender, EventArgs e)
         {
             this.Hide();
-            FormLogin login = new FormLogin();
+            FormLogin login = new FormLogin(_realizarLoginUsecase);
             login.StartPosition = FormStartPosition.Manual;
             login.Location = this.Location;
             login.Show();
@@ -34,7 +36,7 @@ namespace WinFormsApp2
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
             this.Hide();
-            _frmRegistrar =  new FormRegistrar(_registrarUsuarioUseCase);
+            _frmRegistrar = new FormRegistrar(_registrarUsuarioUseCase,_realizarLoginUsecase);
             _frmRegistrar.ShowDialog();
         }
         private void FormInicio_Load(object sender, EventArgs e)

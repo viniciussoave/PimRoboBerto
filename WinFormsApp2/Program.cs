@@ -30,6 +30,7 @@ namespace WinFormsApp2
             var services = new ServiceCollection();
             services.AddSingleton<IUsuarioRepositorio,UsuarioRepositorio>();
             services.AddTransient<IRegistrarUsuarioUseCase,RegistrarUsuarioUseCase>();
+            services.AddTransient<IRealizarLoginUseCase, RealizarLoginUseCase>();
 
 
             services.AddTransient<FormInicio>();

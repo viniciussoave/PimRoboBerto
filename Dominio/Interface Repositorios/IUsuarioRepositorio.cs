@@ -13,6 +13,7 @@ namespace Dominio.Interface_Repositorios
         public void Adicionar(Usuario usuario);
         public bool ExisteEmail(string email);
         public bool NomeUsuarioExiste(string nomeUsuario);
+        public Usuario RecuperarPorNome(string nome);
 
     }
 }

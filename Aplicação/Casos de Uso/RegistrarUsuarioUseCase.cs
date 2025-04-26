@@ -30,7 +30,7 @@ namespace Aplicação.Casos_de_Uso
             }
             if (_usuarioRepositorio.NomeUsuarioExiste(usuarioDto.Nome))
             {
-                return RespostaPadrao<string>.Falha(false, "Registro de usuário", "Nome já cadastrado no sistema!");
+                return RespostaPadrao<string>.Falha(false, "Registro de usuário", "Nome do usuário já cadastrado no sistema!");
             }
             string erros;
             if(!usuario.Validacao(out erros))

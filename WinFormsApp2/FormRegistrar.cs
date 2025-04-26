@@ -21,9 +21,11 @@ namespace WinFormsApp2
         private FormInicio _formInicio;
 
         private readonly IRegistrarUsuarioUseCase _registrarUsuarioUseCase;
+        private readonly IRealizarLoginUseCase _realizarLoginUseCase;
 
-        public FormRegistrar(IRegistrarUsuarioUseCase registrarUsuarioUseCase)
+        public FormRegistrar(IRegistrarUsuarioUseCase registrarUsuarioUseCase, IRealizarLoginUseCase realizarLoginUseCase)
         {
+            _realizarLoginUseCase = realizarLoginUseCase;
             _registrarUsuarioUseCase = registrarUsuarioUseCase;
             InitializeComponent();
             textBoxUsuario.KeyPress += textBox_KeyPress;
@@ -74,9 +76,9 @@ namespace WinFormsApp2
 
         private void btnVoltar_Click(object sender, EventArgs e)
         {
-             _estaTrocandoTela = true;
-             this.Close();
-            _formInicio = new FormInicio(_registrarUsuarioUseCase);
+            _estaTrocandoTela = true;
+            this.Close();
+            _formInicio = new FormInicio(_registrarUsuarioUseCase, _realizarLoginUseCase);
             _formInicio.StartPosition = FormStartPosition.Manual;
             _formInicio.Location = this.Location;
             _formInicio.Show();
@@ -86,8 +88,6 @@ namespace WinFormsApp2
         {
             if (string.IsNullOrEmpty(textBoxEmail.Text) || string.IsNullOrEmpty(textBoxSenha.Text) || string.IsNullOrEmpty(textBoxUsuario.Text) || string.IsNullOrEmpty(textBoxEmail.Text))
             {
-
-
                 MessageBox.Show("Preencha todos os dados obrigatórios!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }

@@ -67,6 +67,33 @@ namespace ConexaoBancoDeDados.Repositorio
                 }
             }
         }
+        public Usuario RecuperarPorNome(string nome)
+        {
+            using (var conexao = connectionDB.ObterConexao())
+            {
+                conexao.Open();
+
+                string sql = "SELECT * from usuario where nome = @nome";
+                using (var cmd = new NpgsqlCommand(sql, conexao))
+                {
+                    cmd.Parameters.AddWithValue("@nome", nome);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            var id = Guid.Parse(reader["id"].ToString());
+                            var email = reader["email"].ToString();
+                            var dataCriacao = Convert.ToDateTime(reader["datacriacao"]);
+                            var _nome = reader["nome"].ToString();
+                            var senha = reader["senha"].ToString();
+                            return Usuario.CriarModeloDoBanco(id, dataCriacao, nome, senha, email);
+                        }
+                    }
+                }
+            }
+            return null;
+        }
 
     }
 }
