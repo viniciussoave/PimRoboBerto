@@ -24,7 +24,14 @@ namespace Aplicação.Casos_de_Uso
         {
             var usuario = Usuario.CriarModelo(usuarioDto.Nome, usuarioDto.Senha, usuarioDto.Email);
 
-
+            if (_usuarioRepositorio.ExisteEmail(usuarioDto.Email))
+            {
+                return RespostaPadrao<string>.Falha(false, "Registro de usuário", "Email já cadastrado no sistema!");
+            }
+            if (_usuarioRepositorio.NomeUsuarioExiste(usuarioDto.Nome))
+            {
+                return RespostaPadrao<string>.Falha(false, "Registro de usuário", "Nome já cadastrado no sistema!");
+            }
             string erros;
             if(!usuario.Validacao(out erros))
             {

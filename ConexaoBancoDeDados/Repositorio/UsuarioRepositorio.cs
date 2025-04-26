@@ -29,8 +29,41 @@ namespace ConexaoBancoDeDados.Repositorio
                     cmd.Parameters.AddWithValue("@nome", usuario.Nome);
                     cmd.Parameters.AddWithValue("@senha", usuario.Senha);
                     cmd.Parameters.AddWithValue("@email", usuario.Email);
-
                     cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public bool ExisteEmail(string email)
+        {
+            using (var conexao = connectionDB.ObterConexao())
+            {
+                conexao.Open();
+
+                string sql = "select count(*) from usuario where email = @email";
+                using (var cmd = new NpgsqlCommand(sql, conexao))
+                {
+                    cmd.Parameters.AddWithValue("@email", email);
+                    int count = Convert.ToInt16(cmd.ExecuteScalar());
+                    if (count > 0) return true;
+                    return false;
+                }
+            }
+        }
+
+        public bool NomeUsuarioExiste(string nomeUsuario)
+        {
+            using (var conexao = connectionDB.ObterConexao())
+            {
+                conexao.Open();
+
+                string sql = "select count(*) from usuario where nome = @nome";
+                using (var cmd = new NpgsqlCommand(sql, conexao))
+                {
+                    cmd.Parameters.AddWithValue("@nome", nomeUsuario);
+                    int count = Convert.ToInt16(cmd.ExecuteScalar());
+                    if (count > 0) return true;
+                    return false;
                 }
             }
         }
