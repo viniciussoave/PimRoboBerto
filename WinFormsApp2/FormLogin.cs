@@ -8,14 +8,16 @@ namespace WinFormsApp2
         private bool _estaTrocandoTela = false;
         private Historico _frmHistorico;
         private FormInicio _frmInicio;
+        private FrmEsqueciASenha _frmEsqueciASenha;
         private readonly IRealizarLoginUseCase _realizarLoginUseCase;
         private readonly IServiceProvider _serviceProvider;
 
-        public FormLogin(IRealizarLoginUseCase realizarLoginUseCase,IServiceProvider serviceProvider)
+        public FormLogin(IRealizarLoginUseCase realizarLoginUseCase, IServiceProvider serviceProvider)
         {
             _realizarLoginUseCase = realizarLoginUseCase;
             _serviceProvider = serviceProvider;
             InitializeComponent();
+
             //Isso serve para dentro dos campos, não ser apertado o espaço e o enter funcionar para entrar.
             textBoxUsuario.KeyPress += textBox_KeyPress;
             textBoxSenha.KeyPress += textBox_KeyPress;
@@ -93,17 +95,27 @@ namespace WinFormsApp2
 
             if (checkBox1.Checked)
             {
-                textBoxSenha.PasswordChar = '\0'; 
+                textBoxSenha.PasswordChar = '\0';
             }
             else
             {
-                textBoxSenha.PasswordChar = '*'; 
+                textBoxSenha.PasswordChar = '*';
             }
         }
 
         private void textBoxUsuario_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void linkLblEsqueciSenha_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            _estaTrocandoTela = true;
+            this.Close();
+            _frmEsqueciASenha = _serviceProvider.GetRequiredService<FrmEsqueciASenha>();
+            _frmEsqueciASenha.StartPosition = FormStartPosition.Manual;
+            _frmEsqueciASenha.Location = this.Location;
+            _frmEsqueciASenha.Show();
         }
     }
 }

@@ -53,7 +53,7 @@ namespace Dominio.Entidades
 
         public bool VerificarSenha(string senhaDigitada)
         {
-            return Senha == senhaDigitada; // ou aplicar hash antes de comparar
+            return Senha == senhaDigitada; 
         }
     }
 }

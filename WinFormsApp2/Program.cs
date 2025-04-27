@@ -1,5 +1,7 @@
 using Aplicação.Casos_de_Uso;
 using Aplicação.Interfaces_Caso_De_Uso;
+using Aplicação.Interfaces_Caso_De_Uso_e_Servicos;
+using Aplicação.Servicos;
 using ConexaoBancoDeDados.Repositorio;
 using Dominio.Interface_conexao_banco_de_dados;
 using Dominio.Interface_Repositorios;
@@ -31,14 +33,21 @@ namespace WinFormsApp2
             var services = new ServiceCollection();
 
             services.AddSingleton<IUsuarioRepositorio,UsuarioRepositorio>();
+
+
             services.AddTransient<IRegistrarUsuarioUseCase,RegistrarUsuarioUseCase>();
             services.AddTransient<IRealizarLoginUseCase, RealizarLoginUseCase>();
+            services.AddTransient<IRecuperarSenhaUseCase, RecuperarSenhaUseCase>();
+            services.AddTransient<ICodigoVerificacaoEmail, CodigoVerificacaoServico>();
+            services.AddScoped<IEnviarEmailServico, EnviarEmailServico>();
+
 
 
             services.AddTransient<FormInicio>();
             services.AddTransient<FormRegistrar>();
             services.AddTransient<FormLogin>();
             services.AddTransient<Historico>();
+            services.AddTransient<FrmEsqueciASenha>();
             services.AddScoped<IPostgresAdaptador, PostgresAdaptador>();
 
 
