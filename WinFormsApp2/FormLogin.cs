@@ -88,6 +88,17 @@ namespace WinFormsApp2
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
+
+            // aqui eu usei IA para saber como mostrava a senha sem os asteriscos (não sabia como fazer então recorri a I.A)
+
+            if (checkBox1.Checked)
+            {
+                textBoxSenha.PasswordChar = '\0'; 
+            }
+            else
+            {
+                textBoxSenha.PasswordChar = '*'; 
+            }
         }
 
         private void textBoxUsuario_TextChanged(object sender, EventArgs e)
