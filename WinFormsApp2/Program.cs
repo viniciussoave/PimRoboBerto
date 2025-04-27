@@ -28,6 +28,7 @@ namespace WinFormsApp2
         private static ServiceProvider ConfigureServices()
         {
             var services = new ServiceCollection();
+
             services.AddSingleton<IUsuarioRepositorio,UsuarioRepositorio>();
             services.AddTransient<IRegistrarUsuarioUseCase,RegistrarUsuarioUseCase>();
             services.AddTransient<IRealizarLoginUseCase, RealizarLoginUseCase>();
@@ -35,6 +36,7 @@ namespace WinFormsApp2
 
             services.AddTransient<FormInicio>();
             services.AddTransient<FormRegistrar>();
+            services.AddTransient<FormLogin>();
 
 
             return services.BuildServiceProvider();

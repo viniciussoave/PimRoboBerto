@@ -1,4 +1,5 @@
 ﻿using Aplicação.Interfaces_Caso_De_Uso;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,34 +14,37 @@ namespace WinFormsApp2
 {
     public partial class FormInicio : Form
     {
-        private FormRegistrar _frmRegistrar;
+        private readonly IServiceProvider _serviceProvider;
+        private FormRegistrar _formRegistrar;
+        private FormLogin _formLogin;
 
-        private readonly IRegistrarUsuarioUseCase _registrarUsuarioUseCase;
-        private readonly IRealizarLoginUseCase _realizarLoginUsecase;
-
-        public FormInicio(IRegistrarUsuarioUseCase registrarUsuarioUseCase, IRealizarLoginUseCase realizarLoginUseCase)
+        public FormInicio(IServiceProvider serviceProvider)
         {
-            _realizarLoginUsecase = realizarLoginUseCase;
-            _registrarUsuarioUseCase = registrarUsuarioUseCase;
+            _serviceProvider = serviceProvider;
             InitializeComponent();
 
         }
         private void btnLogin_Click(object sender, EventArgs e)
         {
             this.Hide();
-            FormLogin login = new FormLogin(_realizarLoginUsecase);
-            login.StartPosition = FormStartPosition.Manual;
-            login.Location = this.Location;
-            login.Show();
+            _formLogin = _serviceProvider.GetRequiredService<FormLogin>();
+            _formLogin.StartPosition = FormStartPosition.Manual;
+            _formLogin.Location = this.Location;
+            _formLogin.Show();
         }
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
             this.Hide();
-            _frmRegistrar = new FormRegistrar(_registrarUsuarioUseCase,_realizarLoginUsecase);
-            _frmRegistrar.ShowDialog();
+            _formRegistrar = _serviceProvider.GetRequiredService<FormRegistrar>();
+            _formRegistrar.ShowDialog();
         }
         private void FormInicio_Load(object sender, EventArgs e)
         {
+        }
+
+        private void PanelMsgs_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

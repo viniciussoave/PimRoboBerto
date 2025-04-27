@@ -2,6 +2,7 @@
 using Aplicação.Casos_de_Uso;
 using Aplicação.DTOs;
 using Aplicação.Interfaces_Caso_De_Uso;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,19 +22,24 @@ namespace WinFormsApp2
         private FormInicio _formInicio;
 
         private readonly IRegistrarUsuarioUseCase _registrarUsuarioUseCase;
-        private readonly IRealizarLoginUseCase _realizarLoginUseCase;
+        private readonly IServiceProvider _serviceProvider;
 
-        public FormRegistrar(IRegistrarUsuarioUseCase registrarUsuarioUseCase, IRealizarLoginUseCase realizarLoginUseCase)
+        public FormRegistrar(IRegistrarUsuarioUseCase registrarUsuarioUseCase, IServiceProvider serviceProvider)
         {
-            _realizarLoginUseCase = realizarLoginUseCase;
             _registrarUsuarioUseCase = registrarUsuarioUseCase;
+            _serviceProvider = serviceProvider;
             InitializeComponent();
             textBoxUsuario.KeyPress += textBox_KeyPress;
             textBoxSenha.KeyPress += textBox_KeyPress;
             textBoxConfirmarSenha.KeyPress += textBox_KeyPress;
             textBoxEmail.KeyPress += textBox_KeyPress;
-
         }
+
+       //public FormRegistrar(IRegistrarUsuarioUseCase registrarUsuarioUseCase, IRealizarLoginUseCase realizarLoginUseCase)
+       //{
+       //    _realizarLoginUseCase = realizarLoginUseCase;
+       //    _registrarUsuarioUseCase = registrarUsuarioUseCase;
+       //}
 
         private bool _estaTrocandoTela = false;
 
@@ -78,7 +84,7 @@ namespace WinFormsApp2
         {
             _estaTrocandoTela = true;
             this.Close();
-            _formInicio = new FormInicio(_registrarUsuarioUseCase, _realizarLoginUseCase);
+            _formInicio = _serviceProvider.GetRequiredService<FormInicio>();
             _formInicio.StartPosition = FormStartPosition.Manual;
             _formInicio.Location = this.Location;
             _formInicio.Show();
@@ -110,6 +116,7 @@ namespace WinFormsApp2
 
             MessageBoxIcon icone = resposta.Procede ? MessageBoxIcon.Information : MessageBoxIcon.Warning;
             MessageBox.Show(resposta.Dados, resposta.Mensagem, MessageBoxButtons.OK, icone);
+
             if (resposta.Procede)
             {
                 LimparCampos();

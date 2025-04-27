@@ -40,20 +40,19 @@
             // 
             PanelMsgs.BackColor = Color.FromArgb(237, 235, 191);
             PanelMsgs.BorderStyle = BorderStyle.FixedSingle;
-            PanelMsgs.Location = new Point(159, 273);
-            PanelMsgs.Margin = new Padding(3, 2, 3, 2);
+            PanelMsgs.Location = new Point(182, 364);
             PanelMsgs.Name = "PanelMsgs";
-            PanelMsgs.Size = new Size(306, 150);
+            PanelMsgs.Size = new Size(349, 199);
             PanelMsgs.TabIndex = 3;
+            PanelMsgs.Paint += PanelMsgs_Paint;
             // 
             // panel2
             // 
             panel2.BackgroundImage = (Image)resources.GetObject("panel2.BackgroundImage");
             panel2.BackgroundImageLayout = ImageLayout.Stretch;
-            panel2.Location = new Point(201, 39);
-            panel2.Margin = new Padding(3, 2, 3, 2);
+            panel2.Location = new Point(230, 52);
             panel2.Name = "panel2";
-            panel2.Size = new Size(219, 188);
+            panel2.Size = new Size(250, 251);
             panel2.TabIndex = 4;
             // 
             // btnLogin
@@ -62,10 +61,10 @@
             btnLogin.FlatStyle = FlatStyle.Flat;
             btnLogin.Font = new Font("Georgia", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnLogin.ImageAlign = ContentAlignment.TopCenter;
-            btnLogin.Location = new Point(201, 302);
+            btnLogin.Location = new Point(230, 403);
             btnLogin.Margin = new Padding(1);
             btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(219, 30);
+            btnLogin.Size = new Size(250, 40);
             btnLogin.TabIndex = 8;
             btnLogin.TabStop = false;
             btnLogin.Text = "Login";
@@ -79,10 +78,10 @@
             btnRegistrar.FlatStyle = FlatStyle.Flat;
             btnRegistrar.Font = new Font("Georgia", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnRegistrar.ImageAlign = ContentAlignment.TopCenter;
-            btnRegistrar.Location = new Point(201, 361);
+            btnRegistrar.Location = new Point(230, 481);
             btnRegistrar.Margin = new Padding(1);
             btnRegistrar.Name = "btnRegistrar";
-            btnRegistrar.Size = new Size(219, 30);
+            btnRegistrar.Size = new Size(250, 40);
             btnRegistrar.TabIndex = 9;
             btnRegistrar.TabStop = false;
             btnRegistrar.Text = "Registrar";
@@ -94,25 +93,24 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Georgia", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(150, 228);
+            label1.Location = new Point(171, 304);
             label1.Name = "label1";
-            label1.Size = new Size(292, 38);
+            label1.Size = new Size(367, 46);
             label1.TabIndex = 11;
             label1.Text = "RoboBerto ChatBot";
             // 
             // FormInicio
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(621, 511);
+            ClientSize = new Size(710, 681);
             Controls.Add(label1);
             Controls.Add(btnRegistrar);
             Controls.Add(btnLogin);
             Controls.Add(panel2);
             Controls.Add(PanelMsgs);
             FormBorderStyle = FormBorderStyle.FixedSingle;
-            Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
             Name = "FormInicio";
             Text = "Inicio - RoboBerto ChatBot";
