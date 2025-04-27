@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,16 @@ namespace WinFormsApp2
 {
     public partial class Historico : Form
     {
+
+        private FormInicio _frmInicio;
+        private FormChat _frmChat;
+        private readonly IServiceProvider _serviceProvider;
         private bool _estaTrocandoTela = false;
-        public Historico()
+
+        public Historico(FormInicio frmInicio, IServiceProvider serviceProvider)
         {
+            _frmInicio = frmInicio;
+            _serviceProvider = serviceProvider;
             InitializeComponent();
         }
 
@@ -24,26 +32,24 @@ namespace WinFormsApp2
         }
 
 
-
         private void ChatVoltar_Click(object sender, EventArgs e)
         {
 
             this.Close();
-            FormChat chat2 = new FormChat();
-            chat2.StartPosition = FormStartPosition.Manual;
-            chat2.Location = this.Location;
-            chat2.Show();
+            _frmChat = _serviceProvider.GetRequiredService<FormChat>();
+            _frmChat.StartPosition = FormStartPosition.Manual;
+            _frmChat.Location = this.Location;
+            _frmChat.Show();
         }
 
         private void btnVoltar_Click(object sender, EventArgs e)
         {
-       //   this.Close();
-       //   FormInicio Inicio = new FormInicio();
-       //   Inicio.StartPosition = FormStartPosition.Manual;
-       //   Inicio.Location = this.Location;
-       //   Inicio.Show();
+            this.Close();
+            _frmInicio = _serviceProvider.GetRequiredService<FormInicio>();
+            _frmInicio.StartPosition = FormStartPosition.Manual;
+            _frmInicio.Location = this.Location;
+            _frmInicio.Show();
         }
-
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 

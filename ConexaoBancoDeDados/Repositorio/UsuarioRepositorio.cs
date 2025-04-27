@@ -1,4 +1,5 @@
 ﻿using Dominio.Entidades;
+using Dominio.Interface_conexao_banco_de_dados;
 using Dominio.Interface_Repositorios;
 using Npgsql;
 using System;
@@ -12,10 +13,17 @@ namespace ConexaoBancoDeDados.Repositorio
 {
     public class UsuarioRepositorio : IUsuarioRepositorio
     {
+        private readonly IPostgresAdaptador _postgresAdaptador;
+
+        public UsuarioRepositorio(IPostgresAdaptador postgresAdaptador)
+        {
+           _postgresAdaptador = postgresAdaptador;
+        }
+
         public void Adicionar(Usuario usuario)
         {
 
-            using (var conexao = connectionDB.ObterConexao())
+            using (var conexao = _postgresAdaptador.ObterConexao())
             {
 
                 conexao.Open();
@@ -36,7 +44,7 @@ namespace ConexaoBancoDeDados.Repositorio
 
         public bool ExisteEmail(string email)
         {
-            using (var conexao = connectionDB.ObterConexao())
+            using (var conexao = _postgresAdaptador.ObterConexao())
             {
                 conexao.Open();
 
@@ -53,7 +61,7 @@ namespace ConexaoBancoDeDados.Repositorio
 
         public bool NomeUsuarioExiste(string nomeUsuario)
         {
-            using (var conexao = connectionDB.ObterConexao())
+            using (var conexao = _postgresAdaptador.ObterConexao())
             {
                 conexao.Open();
 
@@ -69,7 +77,7 @@ namespace ConexaoBancoDeDados.Repositorio
         }
         public Usuario RecuperarPorNome(string nome)
         {
-            using (var conexao = connectionDB.ObterConexao())
+            using (var conexao = _postgresAdaptador.ObterConexao())
             {
                 conexao.Open();
 

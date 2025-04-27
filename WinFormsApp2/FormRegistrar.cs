@@ -20,7 +20,7 @@ namespace WinFormsApp2
     {
 
         private FormInicio _formInicio;
-
+        private bool _estaTrocandoTela = false;
         private readonly IRegistrarUsuarioUseCase _registrarUsuarioUseCase;
         private readonly IServiceProvider _serviceProvider;
 
@@ -41,7 +41,7 @@ namespace WinFormsApp2
        //    _registrarUsuarioUseCase = registrarUsuarioUseCase;
        //}
 
-        private bool _estaTrocandoTela = false;
+      
 
         private void textBox_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -52,29 +52,29 @@ namespace WinFormsApp2
             }
         }
 
-        public static bool IsValidEmail(string email)
-        {
-            if (string.IsNullOrWhiteSpace(email))
-                return false;
-
-            try
-            {
-                string pattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
-                Regex regex = new Regex(pattern, RegexOptions.IgnoreCase);
-                return regex.IsMatch(email);
-            }
-            catch (RegexMatchTimeoutException)
-            {
-                return false;
-            }
-        }
-
-        static bool ContemDigitoEspecialOuNumero(string senha)
-        {
-            // Expressão regular para verificar dígitos especiais ou números
-            string padrao = @"[\d\W]";
-            return Regex.IsMatch(senha, padrao);
-        }
+//      public static bool IsValidEmail(string email)
+//      {
+//          if (string.IsNullOrWhiteSpace(email))
+//              return false;
+//
+//          try
+//          {
+//              string pattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+//              Regex regex = new Regex(pattern, RegexOptions.IgnoreCase);
+//              return regex.IsMatch(email);
+//          }
+//          catch (RegexMatchTimeoutException)
+//          {
+//              return false;
+//          }
+//      }
+//
+//      static bool ContemDigitoEspecialOuNumero(string senha)
+//      {
+//          // Expressão regular para verificar dígitos especiais ou números
+//          string padrao = @"[\d\W]";
+//          return Regex.IsMatch(senha, padrao);
+//      }
         private void FormRegistrar_Load(object sender, EventArgs e)
         {
 

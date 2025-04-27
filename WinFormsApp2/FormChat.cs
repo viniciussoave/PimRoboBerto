@@ -1,3 +1,4 @@
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Drawing.Drawing2D;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
@@ -7,8 +8,13 @@ namespace WinFormsApp2
     public partial class FormChat : Form
     {
         private bool _estaTrocandoTela = false;
-        public FormChat()
+        private FormInicio _frmInicio;
+        private Historico _frmHistorico;
+        private IServiceProvider _serviceProvider;
+
+        public FormChat(IServiceProvider serviceProvider)
         {
+            _serviceProvider = serviceProvider;
             InitializeComponent();
         }
 
@@ -92,22 +98,19 @@ namespace WinFormsApp2
         {
             _estaTrocandoTela = true;
             this.Close();
-            Historico chat2 = new Historico();
-            chat2.StartPosition = FormStartPosition.Manual;
-            chat2.Location = this.Location;
-            chat2.Show();
-
+            _frmHistorico = _serviceProvider.GetRequiredService<Historico>();
+            _frmHistorico.StartPosition = FormStartPosition.Manual;
+            _frmHistorico.Location = this.Location;
+            _frmHistorico.Show();
         }
-
         private void btnVoltar_Click(object sender, EventArgs e)
-
         {
-          // _estaTrocandoTela = true;
-          // this.Close();
-          // FormInicio Inicio = new FormInicio();
-          // Inicio.StartPosition = FormStartPosition.Manual;
-          // Inicio.Location = this.Location;
-          // Inicio.Show();
+           _estaTrocandoTela = true;
+           this.Close();
+            _frmInicio = _serviceProvider.GetRequiredService<FormInicio>();
+            _frmInicio.StartPosition = FormStartPosition.Manual;
+            _frmInicio.Location = this.Location;
+            _frmInicio.Show();
         }
     }
 }

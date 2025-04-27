@@ -1,4 +1,5 @@
-﻿using Npgsql;
+﻿using Dominio.Interface_conexao_banco_de_dados;
+using Npgsql;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,11 +8,14 @@ using System.Threading.Tasks;
 
 namespace WinFormsApp2
 {
-    class connectionDB
+    public class PostgresAdaptador : IPostgresAdaptador
     {
-        public NpgsqlConnection connection = new NpgsqlConnection("Host=localhost;Port=5432;Username=postgres;Password=1234;Database=roboberto");
-        public NpgsqlCommand command = new NpgsqlCommand();
-        public static NpgsqlConnection ObterConexao()
+
+  //    public NpgsqlConnection connection = new NpgsqlConnection//("Host=localhost;Port=5432;Username=postgres;Password=1234;Database=roboberto");
+  //    public NpgsqlCommand command = new NpgsqlCommand();
+        
+ 
+        public NpgsqlConnection ObterConexao()
         {
 
             string conexao ="Host=localhost;Port=5432;Username=postgres;Password=1234;Database=roboberto";

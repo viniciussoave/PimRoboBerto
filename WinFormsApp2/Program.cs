@@ -1,6 +1,7 @@
 using Aplicação.Casos_de_Uso;
 using Aplicação.Interfaces_Caso_De_Uso;
 using ConexaoBancoDeDados.Repositorio;
+using Dominio.Interface_conexao_banco_de_dados;
 using Dominio.Interface_Repositorios;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -37,6 +38,8 @@ namespace WinFormsApp2
             services.AddTransient<FormInicio>();
             services.AddTransient<FormRegistrar>();
             services.AddTransient<FormLogin>();
+            services.AddTransient<Historico>();
+            services.AddScoped<IPostgresAdaptador, PostgresAdaptador>();
 
 
             return services.BuildServiceProvider();

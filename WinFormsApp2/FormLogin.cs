@@ -11,7 +11,7 @@ namespace WinFormsApp2
         private readonly IRealizarLoginUseCase _realizarLoginUseCase;
         private readonly IServiceProvider _serviceProvider;
 
-        public FormLogin(IRealizarLoginUseCase realizarLoginUseCase, IServiceProvider serviceProvider)
+        public FormLogin(IRealizarLoginUseCase realizarLoginUseCase,IServiceProvider serviceProvider)
         {
             _realizarLoginUseCase = realizarLoginUseCase;
             _serviceProvider = serviceProvider;
@@ -70,19 +70,20 @@ namespace WinFormsApp2
             };
 
             var resposta = _realizarLoginUseCase.Executar(loginDto);
+
             if (resposta.Procede)
             {
                 _estaTrocandoTela = true;
                 this.Close();
-                _frmHistorico = new Historico();
+                _frmHistorico = _serviceProvider.GetRequiredService<Historico>();
                 _frmHistorico.StartPosition = FormStartPosition.Manual;
                 _frmHistorico.Location = this.Location;
                 _frmHistorico.Show();
+                return;
+
             }
 
-            MessageBoxIcon icone = resposta.Procede ? MessageBoxIcon.Information : MessageBoxIcon.Warning;
-            MessageBox.Show(resposta.Dados, resposta.Mensagem, MessageBoxButtons.OK, icone);
-            return;
+            MessageBox.Show(resposta.Dados, resposta.Mensagem, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
