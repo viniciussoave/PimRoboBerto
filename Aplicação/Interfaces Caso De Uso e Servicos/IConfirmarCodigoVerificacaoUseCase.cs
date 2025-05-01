@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace Aplicação.Interfaces_Caso_De_Uso_e_Servicos
 {
-    public interface IRecuperarSenhaUseCase
+    public interface IConfirmarCodigoVerificacaoUseCase
     {
-        public Task<(RespostaPadrao<string>, string codigoVerificacao)> Executar(string email);
 
+        public RespostaPadrao<string> Executar(string codigo, string entradaUsuario);
 
     }
 }

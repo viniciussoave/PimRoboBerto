@@ -15,30 +15,71 @@ namespace WinFormsApp2
     {
 
         private readonly IRecuperarSenhaUseCase _recuperarSenhaUseCase;
+        private readonly IConfirmarCodigoVerificacaoUseCase _confirmarCodigoVerificacao;
+        private string _codigoVerificacaoGerado;
 
-        public FrmEsqueciASenha(IRecuperarSenhaUseCase recuperarSenhaUseCase)
+        public FrmEsqueciASenha(IRecuperarSenhaUseCase recuperarSenhaUseCase, IConfirmarCodigoVerificacaoUseCase confirmarCodigoVerificacao)
         {
-            InitializeComponent();
             _recuperarSenhaUseCase = recuperarSenhaUseCase;
+            _confirmarCodigoVerificacao = confirmarCodigoVerificacao;
+            InitializeComponent();
         }
 
 
-        private void BtnEnviarConfirmacao_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(txtEmail.Text))
-            {
-                MessageBox.Show("Campo do email em branco!");
-            }
 
-            var resposta = _recuperarSenhaUseCase.Executar(txtEmail.Text);
-
-           // MessageBoxIcon icone = resposta.Procede ? MessageBoxIcon.Information : MessageBoxIcon.Warning;
-           // MessageBox.Show(resposta.Dados, resposta.Mensagem, MessageBoxButtons.OK, icone);
-        }
+        //      public FrmEsqueciASenha(IRecuperarSenhaUseCase recuperarSenhaUseCase)
+        //      {
+        //         
+        //          _recuperarSenhaUseCase = recuperarSenhaUseCase;
+        //      }
 
         private void txtEmail_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void FrmEsqueciASenha_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblInsiraCodigo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtCodigo_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnConfirmarCódigo_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtCodigo.Text))
+            {
+                MessageBox.Show("Campo do código em branco!");
+                return;
+            }
+
+            var resposta = _confirmarCodigoVerificacao.Executar(_codigoVerificacaoGerado, txtCodigo.Text);
+            
+            MessageBoxIcon icone = resposta.Procede ? MessageBoxIcon.Information : MessageBoxIcon.Warning;
+            MessageBox.Show(resposta.Dados, resposta.Mensagem, MessageBoxButtons.OK, icone);
+
+
+        }
+        private async void BtnEnviarConfirmacao_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtEmail.Text))
+            {
+                MessageBox.Show("Campo do email em branco!");
+                return;
+            }
+            var (resposta, _codigoVerificacaoGerado) = await _recuperarSenhaUseCase.Executar(txtEmail.Text);
+
+            MessageBoxIcon icone = resposta.Procede ? MessageBoxIcon.Information : MessageBoxIcon.Warning;
+            MessageBox.Show(resposta.Dados, resposta.Mensagem, MessageBoxButtons.OK, icone);
+        
         }
     }
 }

@@ -11,6 +11,7 @@ namespace Aplicação.DTOs
 
         public string Usuario { get; set; }
         public string Senha { get; set; }
+        public CodigoVerificacaoDTO codigoVerificacaoDTO { get; set; }
 
         public LoginDTO()
         {

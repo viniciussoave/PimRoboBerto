@@ -18,14 +18,17 @@ namespace Aplicação.Servicos
         public async Task<bool> EnviarEmail(string emailDestino, string emailOrigem, string assunto, string corpo)
         {
             var apiKey = PegarApiKey();
+
             var client = new SendGridClient(apiKey);
 
             var origem = new EmailAddress(emailOrigem);
+
             var para = new EmailAddress(emailDestino);
+
             var mensagem = MailHelper.CreateSingleEmail(origem, para, assunto, corpo, corpo);
 
             try
-            {
+             {
                 var resposta = await client.SendEmailAsync(mensagem);
 
                 if (resposta.StatusCode == System.Net.HttpStatusCode.Accepted)
@@ -33,9 +36,9 @@ namespace Aplicação.Servicos
                     return true; // E-mail enviado com sucesso
                 }
             }
-            catch (Exception ex)
+            catch (HttpRequestException ex)
             {
-                // Tratamento de erro
+                throw new Exception("Maquina não conectada á internet!");
             }
 
             return false;
@@ -47,7 +50,7 @@ namespace Aplicação.Servicos
 
             if (!File.Exists(caminhoConfig))
             {
-                return string.Empty;  // Retorna uma chave vazia se o arquivo não for encontrado
+                return string.Empty;  // Retorna uma chave vazia dse o arquivo não for encontrao
             }
 
             string[] linhas = File.ReadAllLines(caminhoConfig);

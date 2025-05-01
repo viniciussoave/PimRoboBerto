@@ -136,7 +136,6 @@ namespace WinFormsApp2
             textBoxSenha.Clear();
             textBoxConfirmarSenha.Clear();
         }
-
         private void textBoxSenha_TextChanged(object sender, EventArgs e)
         {
 

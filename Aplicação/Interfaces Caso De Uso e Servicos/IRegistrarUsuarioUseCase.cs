@@ -10,7 +10,6 @@ namespace Aplicação.Interfaces_Caso_De_Uso
 {
     public interface IRegistrarUsuarioUseCase
     {
-
         public RespostaPadrao<string> Executar(UsuarioDTO usuarioDto);
     }
 }

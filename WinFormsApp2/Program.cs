@@ -38,7 +38,9 @@ namespace WinFormsApp2
             services.AddTransient<IRegistrarUsuarioUseCase,RegistrarUsuarioUseCase>();
             services.AddTransient<IRealizarLoginUseCase, RealizarLoginUseCase>();
             services.AddTransient<IRecuperarSenhaUseCase, RecuperarSenhaUseCase>();
-            services.AddTransient<ICodigoVerificacaoEmail, CodigoVerificacaoServico>();
+            services.AddTransient<IConfirmarCodigoVerificacaoUseCase, ConfirmarCodigoVerificacaoUseCase>();
+
+            services.AddTransient<ICodigoVerificacaoServico, CodigoVerificacaoServico>();
             services.AddScoped<IEnviarEmailServico, EnviarEmailServico>();
 
 

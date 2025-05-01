@@ -7,13 +7,18 @@ using System.Threading.Tasks;
 
 namespace Aplicação.Servicos
 {
-    public class CodigoVerificacaoServico : ICodigoVerificacaoEmail
+    public class CodigoVerificacaoServico : ICodigoVerificacaoServico
     {
 
         public string GerarCodigo()
         {
             Random rand = new Random();
             return rand.Next(100000, 999999).ToString();
+        }
+
+        public bool VerificarCodigo(string codigo, string entradaUsuario)
+        {
+            return codigo.Equals(entradaUsuario);
         }
     }
 }

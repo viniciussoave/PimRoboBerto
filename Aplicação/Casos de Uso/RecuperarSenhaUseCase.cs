@@ -12,32 +12,32 @@ namespace Aplicação.Casos_de_Uso
 {
     public class RecuperarSenhaUseCase : IRecuperarSenhaUseCase
     {
-        string emailOrigem  = "douglas.engratulis@aluno.unip.br";
+        string emailOrigem = "douglas.engratulis@aluno.unip.br";
         private readonly IUsuarioRepositorio _usuarioRepositorio;
         private readonly IEnviarEmailServico _enviarEmailServico;
-        private readonly ICodigoVerificacaoEmail _codigoVerificacaoEmail;
+        private readonly ICodigoVerificacaoServico _codigoVerificacaoEmail;
 
-        public RecuperarSenhaUseCase(IUsuarioRepositorio usuarioRepositorio, IEnviarEmailServico enviarEmailServico, ICodigoVerificacaoEmail codigoVerificacaoEmail)
+        public RecuperarSenhaUseCase(IUsuarioRepositorio usuarioRepositorio, IEnviarEmailServico enviarEmailServico, ICodigoVerificacaoServico codigoVerificacaoEmail)
         {
             _usuarioRepositorio = usuarioRepositorio;
             _enviarEmailServico = enviarEmailServico;
             _codigoVerificacaoEmail = codigoVerificacaoEmail;
         }
-
-         public async Task<RespostaPadrao<string>> Executar(string email)
+        public async Task<(RespostaPadrao<string>, string codigoVerificacao)> Executar(string email)
         {
             if (!_usuarioRepositorio.ExisteEmail(email))
             {
-                // return;
+                return (RespostaPadrao<string>.Falha(false, "Registro de usuário", "Email não cadastrado no sistema"),string.Empty);
             }
+             var codigoVerificacao = _codigoVerificacaoEmail.GerarCodigo();
 
-            var codigoVerificacao = _codigoVerificacaoEmail.GerarCodigo();
+            bool emailEnviado = await _enviarEmailServico.EnviarEmail(email, emailOrigem, $"Seu código de recuperação é: {codigoVerificacao}", "Codigo verificação");
 
-            bool resposta = await _enviarEmailServico.EnviarEmail(email, emailOrigem, $"Seu código de recuperação é: {codigoVerificacao}", "Codigo verificação");
-
-            
-            return RespostaPadrao<string>.Sucesso(true, "Recuperação email", "Enviado código de verificação!");
-
+            if (!emailEnviado)
+            {
+                return (RespostaPadrao<string>.Falha(false, "Recuperação email", "Erro ao enviar a verificação, contate o suporte!"),string.Empty);
+            }
+            return (RespostaPadrao<string>.Sucesso(true, "Recuperação email", "Código de verificação enviado com sucesso!"), codigoVerificacao);
         }
 
     }
