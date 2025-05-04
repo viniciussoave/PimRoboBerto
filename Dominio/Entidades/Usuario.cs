@@ -15,7 +15,7 @@ namespace Dominio.Entidades
         public string Senha { get; private set; }
         public string Email { get; private set; }
 
-        public Usuario(string nome, string senha, string email) : base()
+        private Usuario(string nome, string senha, string email) : base()
         {
             Nome = nome;
             Senha = senha;

@@ -46,6 +46,7 @@ namespace WinFormsApp2
 
 
             services.AddTransient<FormInicio>();
+            services.AddTransient<FormChat>();
             services.AddTransient<FormRegistrar>();
             services.AddTransient<FormLogin>();
             services.AddTransient<Historico>();

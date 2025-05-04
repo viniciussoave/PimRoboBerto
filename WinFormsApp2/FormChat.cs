@@ -105,12 +105,17 @@ namespace WinFormsApp2
         }
         private void btnVoltar_Click(object sender, EventArgs e)
         {
-           _estaTrocandoTela = true;
-           this.Close();
+            _estaTrocandoTela = true;
+            this.Close();
             _frmInicio = _serviceProvider.GetRequiredService<FormInicio>();
             _frmInicio.StartPosition = FormStartPosition.Manual;
             _frmInicio.Location = this.Location;
             _frmInicio.Show();
+        }
+
+        private void TextBoxMsg_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

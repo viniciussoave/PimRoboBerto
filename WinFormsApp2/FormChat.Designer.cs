@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormChat));
             panel2 = new Panel();
-            btnAjuda = new Button();
             BtnFeedback = new Button();
             btnAtendente = new Button();
             btnReinicio = new Button();
@@ -47,27 +46,10 @@
             // 
             panel2.BackgroundImage = (Image)resources.GetObject("panel2.BackgroundImage");
             panel2.BackgroundImageLayout = ImageLayout.Stretch;
-            panel2.Location = new Point(37, 9);
-            panel2.Margin = new Padding(3, 2, 3, 2);
+            panel2.Location = new Point(42, 12);
             panel2.Name = "panel2";
-            panel2.Size = new Size(219, 188);
+            panel2.Size = new Size(250, 251);
             panel2.TabIndex = 1;
-            // 
-            // btnAjuda
-            // 
-            btnAjuda.BackColor = Color.FromArgb(249, 239, 168);
-            btnAjuda.FlatStyle = FlatStyle.Flat;
-            btnAjuda.Font = new Font("Georgia", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnAjuda.ImageAlign = ContentAlignment.TopCenter;
-            btnAjuda.Location = new Point(37, 261);
-            btnAjuda.Margin = new Padding(1);
-            btnAjuda.Name = "btnAjuda";
-            btnAjuda.Size = new Size(219, 30);
-            btnAjuda.TabIndex = 3;
-            btnAjuda.TabStop = false;
-            btnAjuda.Text = "Ajuda";
-            btnAjuda.TextImageRelation = TextImageRelation.TextAboveImage;
-            btnAjuda.UseVisualStyleBackColor = false;
             // 
             // BtnFeedback
             // 
@@ -75,10 +57,10 @@
             BtnFeedback.FlatStyle = FlatStyle.Flat;
             BtnFeedback.Font = new Font("Georgia", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             BtnFeedback.ImageAlign = ContentAlignment.TopCenter;
-            BtnFeedback.Location = new Point(37, 300);
+            BtnFeedback.Location = new Point(42, 352);
             BtnFeedback.Margin = new Padding(1);
             BtnFeedback.Name = "BtnFeedback";
-            BtnFeedback.Size = new Size(219, 30);
+            BtnFeedback.Size = new Size(250, 40);
             BtnFeedback.TabIndex = 4;
             BtnFeedback.TabStop = false;
             BtnFeedback.Text = "Feedback";
@@ -91,10 +73,10 @@
             btnAtendente.FlatStyle = FlatStyle.Flat;
             btnAtendente.Font = new Font("Georgia", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnAtendente.ImageAlign = ContentAlignment.TopCenter;
-            btnAtendente.Location = new Point(37, 339);
+            btnAtendente.Location = new Point(42, 411);
             btnAtendente.Margin = new Padding(1);
             btnAtendente.Name = "btnAtendente";
-            btnAtendente.Size = new Size(219, 30);
+            btnAtendente.Size = new Size(250, 40);
             btnAtendente.TabIndex = 5;
             btnAtendente.TabStop = false;
             btnAtendente.Text = "Atendente";
@@ -107,10 +89,10 @@
             btnReinicio.FlatStyle = FlatStyle.Flat;
             btnReinicio.Font = new Font("Georgia", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnReinicio.ImageAlign = ContentAlignment.TopCenter;
-            btnReinicio.Location = new Point(37, 378);
+            btnReinicio.Location = new Point(42, 468);
             btnReinicio.Margin = new Padding(1);
             btnReinicio.Name = "btnReinicio";
-            btnReinicio.Size = new Size(219, 30);
+            btnReinicio.Size = new Size(250, 40);
             btnReinicio.TabIndex = 6;
             btnReinicio.TabStop = false;
             btnReinicio.Text = "Reinicio";
@@ -123,10 +105,10 @@
             btnHistorico.FlatStyle = FlatStyle.Flat;
             btnHistorico.Font = new Font("Georgia", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnHistorico.ImageAlign = ContentAlignment.TopCenter;
-            btnHistorico.Location = new Point(37, 221);
+            btnHistorico.Location = new Point(42, 295);
             btnHistorico.Margin = new Padding(1);
             btnHistorico.Name = "btnHistorico";
-            btnHistorico.Size = new Size(219, 30);
+            btnHistorico.Size = new Size(250, 40);
             btnHistorico.TabIndex = 7;
             btnHistorico.TabStop = false;
             btnHistorico.Text = "Historico";
@@ -141,18 +123,16 @@
             PanelChat.Controls.Add(PanelMsgs);
             PanelChat.Controls.Add(BtnEnviar);
             PanelChat.Controls.Add(TextBoxMsg);
-            PanelChat.Location = new Point(302, 9);
-            PanelChat.Margin = new Padding(3, 2, 3, 2);
+            PanelChat.Location = new Point(345, 12);
             PanelChat.Name = "PanelChat";
-            PanelChat.Size = new Size(309, 493);
+            PanelChat.Size = new Size(353, 657);
             PanelChat.TabIndex = 0;
             // 
             // PanelMsgs
             // 
-            PanelMsgs.Location = new Point(3, 2);
-            PanelMsgs.Margin = new Padding(3, 2, 3, 2);
+            PanelMsgs.Location = new Point(3, 3);
             PanelMsgs.Name = "PanelMsgs";
-            PanelMsgs.Size = new Size(301, 446);
+            PanelMsgs.Size = new Size(344, 595);
             PanelMsgs.TabIndex = 2;
             // 
             // BtnEnviar
@@ -160,10 +140,9 @@
             BtnEnviar.FlatStyle = FlatStyle.Flat;
             BtnEnviar.ForeColor = Color.FromArgb(237, 235, 191);
             BtnEnviar.Image = (Image)resources.GetObject("BtnEnviar.Image");
-            BtnEnviar.Location = new Point(280, 455);
-            BtnEnviar.Margin = new Padding(3, 2, 3, 2);
+            BtnEnviar.Location = new Point(320, 607);
             BtnEnviar.Name = "BtnEnviar";
-            BtnEnviar.Size = new Size(24, 20);
+            BtnEnviar.Size = new Size(27, 27);
             BtnEnviar.TabIndex = 1;
             BtnEnviar.UseVisualStyleBackColor = true;
             BtnEnviar.Click += BtnEnviar_Click;
@@ -172,14 +151,14 @@
             // 
             TextBoxMsg.BackColor = Color.White;
             TextBoxMsg.BorderStyle = BorderStyle.FixedSingle;
-            TextBoxMsg.Location = new Point(13, 453);
-            TextBoxMsg.Margin = new Padding(3, 2, 3, 2);
+            TextBoxMsg.Location = new Point(15, 604);
             TextBoxMsg.MaxLength = 36;
             TextBoxMsg.Multiline = false;
             TextBoxMsg.Name = "TextBoxMsg";
-            TextBoxMsg.Size = new Size(263, 30);
+            TextBoxMsg.Size = new Size(300, 39);
             TextBoxMsg.TabIndex = 0;
             TextBoxMsg.Text = "";
+            TextBoxMsg.TextChanged += TextBoxMsg_TextChanged;
             TextBoxMsg.KeyPress += TextBoxMsg_KeyPress;
             // 
             // btnVoltar
@@ -188,10 +167,10 @@
             btnVoltar.FlatStyle = FlatStyle.Flat;
             btnVoltar.Font = new Font("Georgia", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnVoltar.ImageAlign = ContentAlignment.TopCenter;
-            btnVoltar.Location = new Point(37, 455);
+            btnVoltar.Location = new Point(42, 607);
             btnVoltar.Margin = new Padding(1);
             btnVoltar.Name = "btnVoltar";
-            btnVoltar.Size = new Size(93, 30);
+            btnVoltar.Size = new Size(106, 40);
             btnVoltar.TabIndex = 13;
             btnVoltar.TabStop = false;
             btnVoltar.Text = "Voltar";
@@ -201,20 +180,18 @@
             // 
             // FormChat
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(621, 511);
+            ClientSize = new Size(710, 681);
             Controls.Add(btnVoltar);
             Controls.Add(btnHistorico);
             Controls.Add(btnReinicio);
             Controls.Add(btnAtendente);
             Controls.Add(BtnFeedback);
-            Controls.Add(btnAjuda);
             Controls.Add(panel2);
             Controls.Add(PanelChat);
             FormBorderStyle = FormBorderStyle.FixedSingle;
-            Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
             Name = "FormChat";
             Text = "Chat";

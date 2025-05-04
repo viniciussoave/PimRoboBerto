@@ -54,5 +54,10 @@ namespace WinFormsApp2
         {
 
         }
+
+        private void Historico_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
