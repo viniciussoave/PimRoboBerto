@@ -9,5 +9,6 @@ namespace Dominio.Interface_Repositorios
         void Adicionar(Chamado chamado);
         List<Chamado> ObterPorUsuario(Guid usuarioId);
         Chamado ObterPorId(Guid id);
+        public int? ObterUltimoNumeroChamado();
     }
 }

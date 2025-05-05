@@ -10,6 +10,10 @@ namespace Aplicacao.Servicos
         {
             var lista = new List<Servico>();
 
+
+            // aqui eu usei IA pq tive dificuldades em discernir como eu procederia nessa parte na predefinição dos servicos
+
+
             // PAI: Internet
             var internet = Servico.CriarModeloDoBanco(Guid.NewGuid(), DateTime.Now, "Acesso à Internet", null);
             var internet1 = Servico.CriarModeloDoBanco(Guid.NewGuid(), DateTime.Now, "Indisponível para navegação", internet.Id);

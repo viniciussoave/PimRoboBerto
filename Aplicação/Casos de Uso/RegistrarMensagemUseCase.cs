@@ -23,17 +23,13 @@ namespace Aplicação.Casos_de_Uso
         {
             try
             {
-                // Verificar se o chamado existe
                 var chamado = _chamadoRepositorio.ObterPorId(mensagemDto.ChamadoId);
                 if (chamado == null)
                 {
                     return RespostaPadrao<string>.Falha(false, "Registrar Mensagem", "Chamado não encontrado!");
                 }
 
-                // Criar a mensagem
-                var mensagem = Mensagem.CriarModelo(mensagemDto.Conteudo, mensagemDto.UsuarioId, mensagemDto.ChamadoId);
-
-                // Adicionar a mensagem ao repositório
+                var mensagem = Mensagem.CriarModelo(mensagemDto.UsuarioId, mensagemDto.Conteudo, mensagemDto.ChamadoId,mensagemDto.NumeroMensagem);
                 _mensagemRepositorio.Adicionar(mensagem);
 
                 return RespostaPadrao<string>.Sucesso(true, "Registrar Mensagem", "Mensagem registrada com sucesso!");

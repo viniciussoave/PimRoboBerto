@@ -21,8 +21,8 @@ namespace ConexaoBancoDeDados.Repositorio
             using var conexao = _adaptador.ObterConexao();
             conexao.Open();
 
-            string sql = @"INSERT INTO chamado (id, datacriacao, usuarioid, servicoid, titulo, status)
-                           VALUES (@id, @dataCriacao, @usuarioId, @servicoId, @titulo, @status)";
+            string sql = @"INSERT INTO chamado (id, datacriacao, usuarioid, servicoid, titulo, status, numerochamado)
+                           VALUES (@id, @dataCriacao, @usuarioId, @servicoId, @titulo, @status, @numeroChamado)";
 
             using var cmd = new NpgsqlCommand(sql, conexao);
             cmd.Parameters.AddWithValue("@id", chamado.Id);
@@ -31,6 +31,7 @@ namespace ConexaoBancoDeDados.Repositorio
             cmd.Parameters.AddWithValue("@servicoId", chamado.ServicoId);
             cmd.Parameters.AddWithValue("@titulo", chamado.Titulo);
             cmd.Parameters.AddWithValue("@status", chamado.Status);
+            cmd.Parameters.AddWithValue("@numeroChamado", chamado.NumeroChamado);
             cmd.ExecuteNonQuery();
         }
 
@@ -53,8 +54,9 @@ namespace ConexaoBancoDeDados.Repositorio
                 var servicoId = Guid.Parse(reader["servicoid"].ToString());
                 var titulo = reader["titulo"].ToString();
                 var status = reader["status"].ToString();
+                var numeroChamado = Convert.ToInt32(reader["numerochamado"]);
 
-                var chamado = Chamado.CriarModeloDoBanco(id, dataCriacao, usuarioId, servicoId, titulo, status);
+                var chamado = Chamado.CriarModeloDoBanco(id, dataCriacao, usuarioId, servicoId, titulo, status, numeroChamado);
                 lista.Add(chamado);
             }
 
@@ -66,7 +68,7 @@ namespace ConexaoBancoDeDados.Repositorio
             using var conexao = _adaptador.ObterConexao();
             conexao.Open();
 
-            string sql = "SELECT * FROM chamado WHERE id = @id";
+            string sql = "SELECT * from chamado WHERE id = @id";
 
             using var cmd = new NpgsqlCommand(sql, conexao);
             cmd.Parameters.AddWithValue("@id", id);
@@ -79,11 +81,25 @@ namespace ConexaoBancoDeDados.Repositorio
                 var servicoId = Guid.Parse(reader["servicoid"].ToString());
                 var titulo = reader["titulo"].ToString();
                 var status = reader["status"].ToString();
+                var numeroChamado = Convert.ToInt32(reader["numerochamado"]);
 
-                return Chamado.CriarModeloDoBanco(id, dataCriacao, usuarioId, servicoId, titulo, status);
+                return Chamado.CriarModeloDoBanco(id, dataCriacao, usuarioId, servicoId, titulo, status, numeroChamado);
             }
 
             return null;
+        }
+
+        public int? ObterUltimoNumeroChamado()
+        {
+            using var conexao = _adaptador.ObterConexao();
+            conexao.Open();
+
+            string sql = "select max(numerochamado) FROM chamado";
+
+            using var cmd = new NpgsqlCommand(sql, conexao);
+            var result = cmd.ExecuteScalar();
+
+            return result != DBNull.Value ? (int?)result : null;
         }
     }
 }

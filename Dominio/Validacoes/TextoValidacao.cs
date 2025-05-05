@@ -1,12 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using Dominio.Dominio;
 
-namespace Dominio.Validacoes.Interface_Validacoes
+namespace Dominio.Validacoes
 {
-    internal class TextoValidacao
+    public partial class ContratoValidacoes<T>
     {
+        public ContratoValidacoes<T> TextoEstaOk(string nome, short minLength, short maxLength, string mensagem, string propriedadeNome)
+        {
+            if (string.IsNullOrEmpty(nome) || (nome.Length < minLength) || (nome.Length > maxLength))
+            {
+                AddNotification(new Notificacao(mensagem, propriedadeNome));
+            }
+            return this;
+        }
     }
 }

@@ -5,6 +5,7 @@
         public Guid UsuarioId { get; set; }
         public Guid ChamadoId { get; set; }
         public string Conteudo { get; set; }
+        public int NumeroMensagem { get; set; }
 
         public MensagemDTO()
         {

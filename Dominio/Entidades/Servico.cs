@@ -13,14 +13,12 @@ namespace Dominio.Entidades
         private readonly List<Servico> _filhos = new();
         public IReadOnlyCollection<Servico> Filhos => _filhos.AsReadOnly();
 
-        // Construtor principal para uso do domínio
         private Servico(string nome, Guid? servicoPaiId = null) : base()
         {
             Nome = nome;
             ServicoPaiId = servicoPaiId;
         }
 
-        // Construtor usado ao reconstruir do banco
         public Servico(Guid id, DateTime dataCriacao, string nome, Guid? servicoPaiId) : base(id, dataCriacao)
         {
             Nome = nome;

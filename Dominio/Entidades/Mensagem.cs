@@ -1,51 +1,56 @@
-﻿using Dominio.Validacoes;
-using Dominio.Validacoes.Interface_Validacoes;
-using System;
+﻿using System;
 
 namespace Dominio.Entidades
 {
-    public class Mensagem : ModeloAbstrato, IContrato
+    public class Mensagem : ModeloAbstrato
     {
-        public string Conteudo { get; private set; }
         public Guid UsuarioId { get; private set; }
         public Guid ChamadoId { get; private set; }
+        public string Conteudo { get; private set; }
+        public int NumMensagem { get; private set; } 
 
-        private Mensagem(string conteudo, Guid usuarioId, Guid chamadoId) : base()
+        private Mensagem(Guid usuarioId, Guid chamadoId, string conteudo, int numMensagem)
+            : base()
         {
-            Conteudo = conteudo;
             UsuarioId = usuarioId;
             ChamadoId = chamadoId;
+            Conteudo = conteudo;
+            NumMensagem = numMensagem;
         }
 
-        // Construtor usado para reconstrução vinda do banco
-        public Mensagem(Guid id, DateTime dataCriacao, string conteudo, Guid usuarioId, Guid chamadoId)
+        public Mensagem(Guid id, DateTime dataCriacao, Guid usuarioId, Guid chamadoId, string conteudo, int numMensagem)
             : base(id, dataCriacao)
         {
-            Conteudo = conteudo;
             UsuarioId = usuarioId;
             ChamadoId = chamadoId;
+            Conteudo = conteudo;
+            NumMensagem = numMensagem;
         }
 
-        public static Mensagem CriarModelo(string conteudo, Guid usuarioId, Guid chamadoId)
+        public static Mensagem CriarModelo(Guid usuarioId, string conteudo, Guid chamadoId, int numeroMensagem)
+
         {
-            return new Mensagem(conteudo, usuarioId, chamadoId);
+            return new Mensagem(usuarioId, chamadoId, conteudo, numeroMensagem);
         }
 
-        public static Mensagem CriarModeloDoBanco(Guid id, DateTime dataCriacao, string conteudo, Guid usuarioId, Guid chamadoId)
+        public static Mensagem CriarModeloDoBanco(Guid id, DateTime dataCriacao, Guid usuarioId, Guid chamadoId, string conteudo, int numMensagem)
         {
-            return new Mensagem(id, dataCriacao, conteudo, usuarioId, chamadoId);
+            return new Mensagem(id, dataCriacao, usuarioId, chamadoId, conteudo, numMensagem);
         }
 
         public override bool Validacao(out string erros)
         {
             erros = "";
 
-            var contratos = new ContratoValidacoes<Mensagem>()
-                .TextoEstaOk(Conteudo, 1, 1000, "A mensagem deve conter entre 1 e 1000 caracteres.", "Conteudo");
-
-            if (!contratos.EhValido())
+            if (string.IsNullOrWhiteSpace(Conteudo))
             {
-                erros = contratos.CapturadorErros();
+                erros = "Conteúdo da mensagem não pode estar vazio.";
+                return false;
+            }
+
+            if (NumMensagem <= 0)
+            {
+                erros = "Número da mensagem deve ser maior que zero.";
                 return false;
             }
 

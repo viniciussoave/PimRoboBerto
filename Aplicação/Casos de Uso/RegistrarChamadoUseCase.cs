@@ -1,5 +1,4 @@
-﻿
-using Aplicação.RespostaPadrao;
+﻿using Aplicação.RespostaPadrao;
 using Dominio.Entidades;
 using Dominio.Interface_Repositorios;
 using System;
@@ -17,7 +16,10 @@ namespace Aplicacao.CasosDeUso
 
         public RespostaPadrao<Chamado> Executar(Guid usuarioId, Guid servicoId, string titulo, string status)
         {
-            var chamado = Chamado.CriarModelo(usuarioId, servicoId, titulo, status);
+            // Gerar o próximo número do chamado
+            int numeroChamado = GerarNumeroChamado();
+
+            var chamado = Chamado.CriarModelo(usuarioId, servicoId, titulo, status, numeroChamado);
 
             if (!chamado.Validacao(out string erros))
             {
@@ -29,5 +31,15 @@ namespace Aplicacao.CasosDeUso
             return RespostaPadrao<Chamado>.Sucesso(true, "Chamado", chamado);
         }
 
+        private int GerarNumeroChamado()
+        {
+    
+            var ultimoChamado = _chamadoRepositorio.ObterUltimoNumeroChamado();
+            if (ultimoChamado.HasValue)
+            {
+                return ultimoChamado.Value + 1;
+            }
+            return 1;  
+        }
     }
 }
