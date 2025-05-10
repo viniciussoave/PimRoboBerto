@@ -16,7 +16,6 @@ namespace Aplicacao.CasosDeUso
 
         public RespostaPadrao<Chamado> Executar(Guid usuarioId, Guid servicoId, string titulo, string status)
         {
-            // Gerar o próximo número do chamado
             int numeroChamado = GerarNumeroChamado();
 
             var chamado = Chamado.CriarModelo(usuarioId, servicoId, titulo, status, numeroChamado);

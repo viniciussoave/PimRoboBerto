@@ -2,6 +2,7 @@ using Aplicação.Casos_de_Uso;
 using Aplicação.Interfaces_Caso_De_Uso;
 using Aplicação.Interfaces_Caso_De_Uso_e_Servicos;
 using Aplicação.Servicos;
+using Aplicacao.Servicos;
 using ConexaoBancoDeDados.Repositorio;
 using Dominio.Interface_conexao_banco_de_dados;
 using Dominio.Interface_Repositorios;
@@ -39,6 +40,7 @@ namespace WinFormsApp2
             services.AddTransient<IRealizarLoginUseCase, RealizarLoginUseCase>();
             services.AddTransient<IRecuperarSenhaUseCase, RecuperarSenhaUseCase>();
             services.AddTransient<IConfirmarCodigoVerificacaoUseCase, ConfirmarCodigoVerificacaoUseCase>();
+            services.AddTransient<IServicoRepositorio, ServicoRepositorio>();
 
             services.AddTransient<ICodigoVerificacaoServico, CodigoVerificacaoServico>();
             services.AddScoped<IEnviarEmailServico, EnviarEmailServico>();

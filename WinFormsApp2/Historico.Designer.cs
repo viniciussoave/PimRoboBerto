@@ -36,10 +36,12 @@
             btnAtendente = new Button();
             btnReinicio = new Button();
             PanelChat = new Panel();
-            button1 = new Button();
             btnVoltar = new Button();
+            panel1 = new Panel();
+            label1 = new Label();
             panel2.SuspendLayout();
             PanelChat.SuspendLayout();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // panel2
@@ -113,7 +115,7 @@
             btnAtendente.Size = new Size(250, 40);
             btnAtendente.TabIndex = 11;
             btnAtendente.TabStop = false;
-            btnAtendente.Text = "Atendente";
+            btnAtendente.Text = "Chamados abertos";
             btnAtendente.TextImageRelation = TextImageRelation.TextAboveImage;
             btnAtendente.UseVisualStyleBackColor = false;
             // 
@@ -137,22 +139,11 @@
             // 
             PanelChat.BackColor = Color.FromArgb(237, 235, 191);
             PanelChat.BorderStyle = BorderStyle.FixedSingle;
-            PanelChat.Controls.Add(button1);
+            PanelChat.Controls.Add(panel1);
             PanelChat.Location = new Point(343, 12);
             PanelChat.Name = "PanelChat";
             PanelChat.Size = new Size(353, 657);
             PanelChat.TabIndex = 13;
-            // 
-            // button1
-            // 
-            button1.Font = new Font("Georgia", 23.8F);
-            button1.Location = new Point(21, 20);
-            button1.Margin = new Padding(3, 4, 3, 4);
-            button1.Name = "button1";
-            button1.Size = new Size(321, 100);
-            button1.TabIndex = 0;
-            button1.Text = "Historico";
-            button1.UseVisualStyleBackColor = true;
             // 
             // btnVoltar
             // 
@@ -171,10 +162,31 @@
             btnVoltar.UseVisualStyleBackColor = false;
             btnVoltar.Click += btnVoltar_Click;
             // 
+            // panel1
+            // 
+            panel1.BackColor = Color.White;
+            panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(label1);
+            panel1.Location = new Point(20, 16);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(312, 125);
+            panel1.TabIndex = 0;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Georgia", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Location = new Point(60, 39);
+            label1.Name = "label1";
+            label1.Size = new Size(186, 46);
+            label1.TabIndex = 0;
+            label1.Text = "Historico";
+            // 
             // Historico
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
             ClientSize = new Size(710, 681);
             Controls.Add(btnVoltar);
             Controls.Add(PanelChat);
@@ -190,6 +202,8 @@
             Load += Historico_Load;
             panel2.ResumeLayout(false);
             PanelChat.ResumeLayout(false);
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -203,6 +217,7 @@
         public Button btnReinicio;
         private Panel PanelChat;
         public Button btnVoltar;
-        private Button button1;
+        private Panel panel1;
+        private Label label1;
     }
 }
