@@ -1,5 +1,6 @@
 ﻿using Aplicação.DTOs;
 using Aplicação.Interfaces_Caso_De_Uso;
+using Dominio.Entidades;
 using Microsoft.Extensions.DependencyInjection;
 namespace WinFormsApp2
 {
@@ -11,11 +12,15 @@ namespace WinFormsApp2
         private FrmEsqueciASenha _frmEsqueciASenha;
         private readonly IRealizarLoginUseCase _realizarLoginUseCase;
         private readonly IServiceProvider _serviceProvider;
+        private readonly UsuarioContexto _usuarioContexto;
 
-        public FormLogin(IRealizarLoginUseCase realizarLoginUseCase, IServiceProvider serviceProvider)
+        public Usuario UsuarioLogado { get; private set; }
+
+        public FormLogin(IRealizarLoginUseCase realizarLoginUseCase, IServiceProvider serviceProvider, UsuarioContexto usuarioContexto)
         {
             _realizarLoginUseCase = realizarLoginUseCase;
             _serviceProvider = serviceProvider;
+            _usuarioContexto = usuarioContexto;
             InitializeComponent();
 
             //Isso serve para dentro dos campos, não ser apertado o espaço e o enter funcionar para entrar.
@@ -75,6 +80,21 @@ namespace WinFormsApp2
 
             if (resposta.Procede)
             {
+                if (resposta.Procede)
+                {
+                    _usuarioContexto.DefinirUsuario(resposta.Dados); 
+
+                    _estaTrocandoTela = true;
+                    this.Close();
+
+                    _frmHistorico = _serviceProvider.GetRequiredService<Historico>();
+                    _frmHistorico.StartPosition = FormStartPosition.Manual;
+                    _frmHistorico.Location = this.Location;
+                    _frmHistorico.Show();
+                    return;
+                }
+
+
                 _estaTrocandoTela = true;
                 this.Close();
                 _frmHistorico = _serviceProvider.GetRequiredService<Historico>();
@@ -85,7 +105,7 @@ namespace WinFormsApp2
 
             }
 
-            MessageBox.Show(resposta.Dados, resposta.Mensagem, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            MessageBox.Show("Login", resposta.Mensagem, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)

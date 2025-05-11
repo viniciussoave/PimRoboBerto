@@ -8,8 +8,9 @@ using System.Threading.Tasks;
 
 namespace Dominio.Interface_Repositorios
 {
-    internal interface IRegistrarChamadoUseCase
+    public interface IRegistrarChamadoUseCase
     {
-        public RespostaPadrao<Chamado> Executar(Guid usuarioId, Guid servicoId, string titulo, string status);
+        public RespostaPadrao<Chamado> Executar(Guid servicoId, string titulo, string status);
+   
     }
 }

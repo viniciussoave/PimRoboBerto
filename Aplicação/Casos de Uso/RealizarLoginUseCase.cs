@@ -21,25 +21,25 @@ namespace Aplicação.Casos_de_Uso
             _usuarioRepositorio = usuarioRepositorio;
         }
 
-        public RespostaPadrao<string> Executar(LoginDTO loginDto)
+        public RespostaPadrao<Usuario> Executar(LoginDTO loginDto)
         {
-
             bool usuarioExiste = _usuarioRepositorio.NomeUsuarioExiste(loginDto.Usuario);
 
             if (!usuarioExiste)
             {
-                return RespostaPadrao<string>.Falha(false, "Login", "Usuário incorreto!");
+                return RespostaPadrao<Usuario>.Falha(false, "Usuário incorreto!", null);  // Alterado aqui para Usuario
             }
 
             var usuario = _usuarioRepositorio.RecuperarPorNome(loginDto.Usuario);
 
             if (!usuario.VerificarSenha(loginDto.Senha))
             {
-                return RespostaPadrao<string>.Falha(false, "Login", "Senha incorreta!");
+                return RespostaPadrao<Usuario>.Falha(false, "Senha incorreta!",null);  // Alterado aqui para Usuario
             }
 
-            return RespostaPadrao<string>.Sucesso(true, "Login", "Login Realizado");
+            return RespostaPadrao<Usuario>.Sucesso(true, "Login", usuario);  // Está correto, pois o retorno é Usuario
         }
+
 
     }
 }

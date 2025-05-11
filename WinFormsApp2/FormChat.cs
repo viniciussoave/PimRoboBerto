@@ -1,3 +1,4 @@
+using Aplicacao.CasosDeUso;
 using Dominio.Entidades;
 using Dominio.Interface_Repositorios;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,10 +12,16 @@ namespace WinFormsApp2
     public partial class FormChat : Form
     {
         private bool _estaTrocandoTela = false;
+        private bool _aguardandoConfirmacaoChamado = false;
         private FormInicio _frmInicio;
         private Historico _frmHistorico;
         private IServiceProvider _serviceProvider;
         private FlowLayoutPanel _flowPanel;
+        private readonly ISolucaoRepositorio _solucaoRepositorio;
+        private readonly IChamadoRepositorio _chamadoRepositorio;
+        private readonly IRegistrarChamadoUseCase _registrarChamadoUseCase;
+
+
 
         private readonly IServicoRepositorio _servicoRepositorio;
         private List<Dominio.Entidades.Servico> _servicosCarregados;
@@ -23,6 +30,9 @@ namespace WinFormsApp2
         {
             _serviceProvider = serviceProvider;
             _servicoRepositorio = _serviceProvider.GetRequiredService<IServicoRepositorio>();
+            _solucaoRepositorio = _serviceProvider.GetRequiredService<ISolucaoRepositorio>();
+            _chamadoRepositorio = _serviceProvider.GetRequiredService<IChamadoRepositorio>();
+            _registrarChamadoUseCase = _serviceProvider.GetRequiredService<IRegistrarChamadoUseCase>();
 
             InitializeComponent();
             InitializeChatPanel();
@@ -61,7 +71,7 @@ namespace WinFormsApp2
             var servicos = _servicoRepositorio.ObterTodos();
             var servicosPrincipais = servicos.Where(s => s.ServicoPaiId == null).ToList();
 
-            string mensagemInicial = "👋 Olá! Sou o assistente virtual de TI. Como posso ajudar?\n\nPor favor, escolha uma opção:\n";
+            string mensagemInicial = "👋 Olá! Sou o RobôBerto! Seu assistente virtual de TI. Como posso ajudar?\n\nPor favor, escolha uma opção:\n";
             for (int i = 0; i < servicosPrincipais.Count; i++)
             {
                 mensagemInicial += $"{i + 1}. {servicosPrincipais[i].Nome}\n";
@@ -79,7 +89,7 @@ namespace WinFormsApp2
 
         private void AdicionarMensagemBot(string mensagem)
         {
-            AdicionarMensagem(mensagem, "Assistente", Color.LightGray, false);
+            AdicionarMensagem(mensagem, "RobôBerto", Color.LightGray, false);
         }
 
         private void AdicionarMensagem(string texto, string remetente, Color corFundo, bool alinhamentoDireita)
@@ -161,69 +171,124 @@ namespace WinFormsApp2
 
         private void ProcessarRespostaUsuario(string resposta)
         {
-            if (int.TryParse(resposta.Trim(), out int numero))
+            if (_aguardandoConfirmacaoChamado && resposta.Trim() == "0")
             {
-                // Opção 0 para voltar ao menu anterior
-                if (numero == 0)
+                try
                 {
-                    MostrarMenuPrincipal();  // Chama o método para mostrar os serviços principais (menu raiz)
-                    _emEscolhaFilho = false; // Reseta o estado de escolha de filho
-                    _servicoPaiAtual = null;  // Limpa o serviço pai atual
-                    return;
-                }
-
-                // Se estiver em estado de escolha de filhos
-                if (_emEscolhaFilho)
-                {
-                    // Verifica se o número digitado corresponde a um filho válido
-                    var servicoSelecionadoFilho = _servicoPaiAtual.Filhos.ElementAtOrDefault(numero - 1);  // Ajuste: usa índice do filho
-
-                    if (servicoSelecionadoFilho != null)
+                    // Verifica se o serviço pai está selecionado
+                    if (_servicoPaiAtual == null)
                     {
-                        // Caso o serviço selecionado seja um filho, registra a solicitação
-                        AdicionarMensagemBot("📩 Sua solicitação foi registrada!\nUm técnico entrará em contato.");
-                        _emEscolhaFilho = false;  // Reseta o estado de escolha de filho
-                        _servicoPaiAtual = null;   // Limpa o serviço pai atual
+                        AdicionarMensagemBot("⚠️ Erro: Nenhum serviço selecionado.");
                         return;
+                    }
+
+                    // Obtém o ID do serviço corretamente (usando a propriedade do domínio)
+                    Guid idservice = _servicoPaiAtual.Id;
+
+                    // Chama o caso de uso com os parâmetros CORRETOS
+                    var resultado = _registrarChamadoUseCase.Executar(
+                        idservice,
+                        _servicoPaiAtual.Nome,
+                        "Aberto"
+                    );
+
+                    // Exibe a mensagem de sucesso/erro
+                    if (resultado.Procede)
+                    {
+                        // Acessa o número do chamado como int (sem formatação)
+                        AdicionarMensagemBot($"✅ Chamado {resultado.Dados.numerochamado} registrado!");
                     }
                     else
                     {
-                        // Mensagem de erro caso o número não corresponda a um filho válido
-                        AdicionarMensagemBot("⚠️ Este não é um serviço filho válido. Tente novamente.");
+                        AdicionarMensagemBot($"❌ Erro: {resultado.Mensagem}");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    AdicionarMensagemBot($"⚠️ Erro crítico: {ex.Message}");
+                }
+
+                // Reseta o estado
+                _aguardandoConfirmacaoChamado = false;
+                _servicoPaiAtual = null;
+                MostrarMenuPrincipal();
+                return;
+            }
+
+            // ... (restante do método permanece igual)
+
+            if (int.TryParse(resposta.Trim(), out int numero))
+            {
+                // Opção 0 para voltar ao menu anterior (mantido original)
+                if (numero == 0)
+                {
+                    MostrarMenuPrincipal();
+                    _emEscolhaFilho = false;
+                    _servicoPaiAtual = null;
+                    return;
+                }
+
+                // Se estiver em estado de escolha de filhos (mantido original)
+                if (_emEscolhaFilho)
+                {
+                    var servicoSelecionadoFilho = _servicoPaiAtual.Filhos.ElementAtOrDefault(numero - 1);
+
+                    if (servicoSelecionadoFilho != null)
+                    {
+                        var solucoes = _solucaoRepositorio.ObterPorServicoPai(servicoSelecionadoFilho.ServicoPaiId.Value);
+
+                        if (solucoes.Any())
+                        {
+                            string msgSolucoes = $"💡 Soluções para {servicoSelecionadoFilho.Nome}:\n\n";
+                            for (int i = 0; i < solucoes.Count; i++)
+                            {
+                                msgSolucoes += $"{i + 1}. {solucoes[i].Descricao}\n";
+                            }
+
+                            // → Alterado mensagem final
+                            msgSolucoes += "\nDigite 0 para abrir um chamado técnico.";
+
+                            AdicionarMensagemBot(msgSolucoes);
+
+                            // → Atualiza estados para próximo passo
+                            _servicoPaiAtual = servicoSelecionadoFilho;
+                            _emEscolhaFilho = false;
+                            _aguardandoConfirmacaoChamado = true; // → NOVO estado
+                        }
+                        else
+                        {
+                            // → Alterado para criar chamado automaticamente
+                            AdicionarMensagemBot("📩 Nenhuma solução encontrada. Registrando chamado...");
+                            _aguardandoConfirmacaoChamado = true;
+                            ProcessarRespostaUsuario("0"); // → Chama o próprio método com '0'
+                        }
                         return;
                     }
                 }
 
-                // Se o serviço selecionado for um pai, mostramos os filhos
+                // Restante do código original mantido igual ↓
                 var servicoSelecionado = _servicosCarregados
-                    .Where(s => s.ServicoPaiId == null)  // Filtra apenas os serviços principais (sem pai)
-                    .ElementAtOrDefault(numero - 1);    // Obtém o serviço correspondente ao número
+                    .Where(s => s.ServicoPaiId == null)
+                    .ElementAtOrDefault(numero - 1);
 
                 if (servicoSelecionado != null)
                 {
                     var filhos = servicoSelecionado.Filhos.ToList();
-
                     if (filhos.Any())
                     {
-                        // Mensagem listando os filhos
                         string mensagemFilhos = $"🔎 {servicoSelecionado.Nome}:\n\n";
                         for (int i = 0; i < filhos.Count; i++)
                         {
-                            mensagemFilhos += $"{i + 1}. {filhos[i].Nome}\n";  // Lista filhos com números para seleção
+                            mensagemFilhos += $"{i + 1}. {filhos[i].Nome}\n";
                         }
-                        mensagemFilhos += "0. Voltar para o menu anterior\n";  // Opção para voltar
+                        mensagemFilhos += "0. Voltar para o menu anterior\n";
                         mensagemFilhos += "\nDigite o número correspondente ao seu problema.";
-
                         AdicionarMensagemBot(mensagemFilhos);
-
-                        // Atualiza o estado para escolher um filho
                         _emEscolhaFilho = true;
                         _servicoPaiAtual = servicoSelecionado;
-                        return;
                     }
                     else
                     {
-                        // Caso o serviço não tenha filhos, mensagem final
                         AdicionarMensagemBot("📩 Sua solicitação foi registrada!\nUm técnico entrará em contato.");
                     }
                 }

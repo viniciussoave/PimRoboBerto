@@ -3,40 +3,97 @@ using System.Collections.Generic;
 
 namespace Dominio.Entidades
 {
-    public class Chamado : ModeloAbstrato
+    public class Chamado : ModeloAbstrato 
     {
-        public Guid UsuarioId { get; private set; }
-        public Guid ServicoId { get; private set; }
-        public string Titulo { get; private set; }
-        public string Status { get; private set; }
-        public int NumeroChamado { get; private set; }
+        // Propriedades alinhadas com o banco (nomes em minúsculas)
+        public Guid idservice { get; private set; }
+        public string titulo { get; private set; }
+        public string status { get; private set; }
+        public int numerochamado { get; private set; }
+        public DateTime dataatualizacao { get; private set; }
+        public Guid idusuario { get; private set; }
 
-        public List<Mensagem> Mensagens { get; private set; } = new List<Mensagem>();
+        public List<Mensagem> mensagens { get; private set; } = new List<Mensagem>();
 
-        private Chamado(Guid id, DateTime dataCriacao, Guid usuarioId, Guid servicoId, string titulo, string status, int numeroChamado)
-            : base(id, dataCriacao)
+        // Construtor para criação manual (não persiste no banco)
+        private Chamado(
+            Guid idusuario,
+            Guid idservice,
+            string titulo,
+            string status,
+            int numerochamado) : base()
         {
-            UsuarioId = usuarioId;
-            ServicoId = servicoId;
-            Titulo = titulo;
-            Status = status;
-            NumeroChamado = numeroChamado;
+            this.idusuario = idusuario;
+            this.idservice = idservice;
+            this.titulo = titulo;
+            this.status = status;
+            this.numerochamado = numerochamado;
+            this.dataatualizacao = DateTime.UtcNow;
         }
 
-        private Chamado(Guid usuarioId, Guid servicoId, string titulo, string status, int numeroChamado)
+        // Construtor para reconstrução do banco (já persistido)
+        private Chamado(
+            Guid id,
+            Guid idservice,
+            string titulo,
+            string status,
+            int numerochamado,
+            DateTime datacriacao,
+            DateTime dataatualizacao,
+            Guid idusuario): base(id,datacriacao)
         {
-            UsuarioId = usuarioId;
-            ServicoId = servicoId;
-            Titulo = titulo;
-            Status = status;
-            NumeroChamado = numeroChamado;
+            this.idservice = idservice;
+            this.titulo = titulo;
+            this.status = status;
+            this.numerochamado = numerochamado;
+            this.dataatualizacao = dataatualizacao;
+            this.idusuario = idusuario;
         }
+        public static Chamado CriarModelo(
+            Guid idusuario,
+            Guid idservice,
+            string titulo,
+            string status,
+            int numerochamado)
+        {
+            return new Chamado(
+                idusuario,
+                idservice,
+                titulo,
+                status,
+                numerochamado
+            );
+        }
+
+        public static Chamado CriarModeloDoBanco(
+            Guid id,
+            Guid idservice,
+            string titulo,
+            string status,
+            int numerochamado,
+            DateTime datacriacao,
+            DateTime dataatualizacao,
+            Guid idusuario)
+        {
+            return new Chamado(
+                id,
+                idservice,
+                titulo,
+                status,
+                numerochamado,
+                datacriacao,
+                dataatualizacao,
+                idusuario
+            );
+        }
+
 
         public void AdicionarMensagem(Mensagem mensagem)
         {
             if (mensagem != null)
             {
-                Mensagens.Add(mensagem);
+                mensagens.Add(mensagem);
+                dataatualizacao = DateTime.UtcNow; // Atualiza a data de atualização
             }
         }
 
@@ -44,23 +101,16 @@ namespace Dominio.Entidades
         {
             erros = string.Empty;
 
-            if (string.IsNullOrWhiteSpace(Titulo))
-                erros += "O título do chamado não pode estar vazio. ";
+            if (string.IsNullOrWhiteSpace(titulo))
+                erros += "Título é obrigatório. ";
 
-            if (string.IsNullOrWhiteSpace(Status))
-                erros += "O status do chamado não pode estar vazio. ";
+            if (string.IsNullOrWhiteSpace(status))
+                erros += "Status é obrigatório. ";
+
+            if (idusuario == Guid.Empty)
+                erros += "Usuário inválido. ";
 
             return string.IsNullOrWhiteSpace(erros);
-        }
-
-        public static Chamado CriarModelo(Guid usuarioId, Guid servicoId, string titulo, string status, int numeroChamado)
-        {
-            return new Chamado(usuarioId, servicoId, titulo, status, numeroChamado);
-        }
-
-        public static Chamado CriarModeloDoBanco(Guid id, DateTime dataCriacao, Guid usuarioId, Guid servicoId, string titulo, string status, int numeroChamado)
-        {
-            return new Chamado(id, dataCriacao, usuarioId, servicoId, titulo, status, numeroChamado);
         }
     }
 }

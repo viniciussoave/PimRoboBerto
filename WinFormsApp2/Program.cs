@@ -1,4 +1,5 @@
 using Aplicação.Casos_de_Uso;
+using Aplicacao.CasosDeUso;
 using Aplicação.Interfaces_Caso_De_Uso;
 using Aplicação.Interfaces_Caso_De_Uso_e_Servicos;
 using Aplicação.Servicos;
@@ -35,12 +36,16 @@ namespace WinFormsApp2
 
             services.AddSingleton<IUsuarioRepositorio,UsuarioRepositorio>();
 
-
+            services.AddSingleton<UsuarioContexto>();
             services.AddTransient<IRegistrarUsuarioUseCase,RegistrarUsuarioUseCase>();
             services.AddTransient<IRealizarLoginUseCase, RealizarLoginUseCase>();
             services.AddTransient<IRecuperarSenhaUseCase, RecuperarSenhaUseCase>();
             services.AddTransient<IConfirmarCodigoVerificacaoUseCase, ConfirmarCodigoVerificacaoUseCase>();
-            services.AddTransient<IServicoRepositorio, ServicoRepositorio>();
+            services.AddTransient<IRegistrarChamadoUseCase, RegistrarChamadoUseCase>();
+
+            services.AddSingleton<IServicoRepositorio, ServicoRepositorio>();
+            services.AddSingleton<IChamadoRepositorio, ChamadoRepositorio>();
+            services.AddSingleton<ISolucaoRepositorio, SolucaoRepositorio>();
 
             services.AddTransient<ICodigoVerificacaoServico, CodigoVerificacaoServico>();
             services.AddScoped<IEnviarEmailServico, EnviarEmailServico>();
