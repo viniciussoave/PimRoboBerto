@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Aplicação.Interfaces_Caso_De_Uso_e_Servicos
+namespace Dominio.Interface_InfraEstrutura
 {
     public interface IEnviarEmailServico
     {
-        public Task<bool> EnviarEmail(string emailDestino, string emailOrigem, string assunto, string corpo);
+        public Task<bool> EnviarEmail(string destinatario, string assunto, string corpo);
     }
 }

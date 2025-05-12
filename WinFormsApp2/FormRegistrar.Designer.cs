@@ -209,6 +209,7 @@
             Controls.Add(label1);
             Controls.Add(panel2);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "FormRegistrar";
             Text = "Registro - RoboBerto ChatBot";

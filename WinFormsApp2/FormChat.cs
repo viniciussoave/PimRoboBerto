@@ -15,7 +15,8 @@ namespace WinFormsApp2
         private bool _aguardandoConfirmacaoChamado = false;
         private FormInicio _frmInicio;
         private Historico _frmHistorico;
-        private IServiceProvider _serviceProvider;
+        private FormChamadosAbertos _frmChamadosAbertos;
+        private readonly IServiceProvider _serviceProvider;
         private FlowLayoutPanel _flowPanel;
         private readonly ISolucaoRepositorio _solucaoRepositorio;
         private readonly IChamadoRepositorio _chamadoRepositorio;
@@ -333,17 +334,6 @@ namespace WinFormsApp2
                 e.Handled = true;
             }
         }
-
-        private void btnHistorico_Click(object sender, EventArgs e)
-        {
-            _estaTrocandoTela = true;
-            this.Close();
-            _frmHistorico = _serviceProvider.GetRequiredService<Historico>();
-            _frmHistorico.StartPosition = FormStartPosition.Manual;
-            _frmHistorico.Location = this.Location;
-            _frmHistorico.Show();
-        }
-
         private void btnVoltar_Click(object sender, EventArgs e)
         {
             _estaTrocandoTela = true;
@@ -383,6 +373,41 @@ namespace WinFormsApp2
         private void PanelChat_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void btnChamadosAbertos_Click(object sender, EventArgs e)
+        {
+            _estaTrocandoTela = true;
+            this.Close();
+            _frmChamadosAbertos = _serviceProvider.GetRequiredService<FormChamadosAbertos>();
+            _frmChamadosAbertos.StartPosition = FormStartPosition.Manual;
+            _frmChamadosAbertos.Location = this.Location;
+            _frmChamadosAbertos.Show();
+        }
+
+        private void btnReinicio_Click(object sender, EventArgs e)
+        {
+            // 1. Limpa todas as mensagens do chat
+            _flowPanel.Controls.Clear();
+
+            // 2. Reseta todas as variáveis de estado
+            _emEscolhaFilho = false;
+            _aguardandoConfirmacaoChamado = false;
+            _servicoPaiAtual = null;
+
+            // 3. Recarrega os serviços do banco de dados
+            _servicosCarregados = _servicoRepositorio.ObterTodos();
+
+            // 4. Mostra a mensagem inicial novamente
+            var servicosPrincipais = _servicosCarregados.Where(s => s.ServicoPaiId == null).ToList();
+            string mensagemInicial = "👋 Olá! Sou o RobôBerto! Seu assistente virtual de TI. Como posso ajudar?\n\nPor favor, escolha uma opção:\n";
+
+            for (int i = 0; i < servicosPrincipais.Count; i++)
+            {
+                mensagemInicial += $"{i + 1}. {servicosPrincipais[i].Nome}\n";
+            }
+
+            AdicionarMensagemBot(mensagemInicial);
         }
     }
 }

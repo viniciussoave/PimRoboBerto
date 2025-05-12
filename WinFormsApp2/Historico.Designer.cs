@@ -32,16 +32,10 @@
             panel2 = new Panel();
             btnHistorico = new Button();
             ChatVoltar = new Button();
-            BtnFeedback = new Button();
-            btnAtendente = new Button();
-            btnReinicio = new Button();
+            btnChamadosAbertos = new Button();
             PanelChat = new Panel();
             btnVoltar = new Button();
-            panel1 = new Panel();
-            label1 = new Label();
             panel2.SuspendLayout();
-            PanelChat.SuspendLayout();
-            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // panel2
@@ -87,63 +81,32 @@
             ChatVoltar.UseVisualStyleBackColor = false;
             ChatVoltar.Click += ChatVoltar_Click;
             // 
-            // BtnFeedback
+            // btnChamadosAbertos
             // 
-            BtnFeedback.BackColor = Color.FromArgb(249, 239, 168);
-            BtnFeedback.FlatStyle = FlatStyle.Flat;
-            BtnFeedback.Font = new Font("Georgia", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            BtnFeedback.ImageAlign = ContentAlignment.TopCenter;
-            BtnFeedback.Location = new Point(42, 349);
-            BtnFeedback.Margin = new Padding(1);
-            BtnFeedback.Name = "BtnFeedback";
-            BtnFeedback.Size = new Size(250, 40);
-            BtnFeedback.TabIndex = 10;
-            BtnFeedback.TabStop = false;
-            BtnFeedback.Text = "Feedback";
-            BtnFeedback.TextImageRelation = TextImageRelation.TextAboveImage;
-            BtnFeedback.UseVisualStyleBackColor = false;
-            // 
-            // btnAtendente
-            // 
-            btnAtendente.BackColor = Color.FromArgb(249, 239, 168);
-            btnAtendente.FlatStyle = FlatStyle.Flat;
-            btnAtendente.Font = new Font("Georgia", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnAtendente.ImageAlign = ContentAlignment.TopCenter;
-            btnAtendente.Location = new Point(42, 401);
-            btnAtendente.Margin = new Padding(1);
-            btnAtendente.Name = "btnAtendente";
-            btnAtendente.Size = new Size(250, 40);
-            btnAtendente.TabIndex = 11;
-            btnAtendente.TabStop = false;
-            btnAtendente.Text = "Chamados abertos";
-            btnAtendente.TextImageRelation = TextImageRelation.TextAboveImage;
-            btnAtendente.UseVisualStyleBackColor = false;
-            // 
-            // btnReinicio
-            // 
-            btnReinicio.BackColor = Color.FromArgb(249, 239, 168);
-            btnReinicio.FlatStyle = FlatStyle.Flat;
-            btnReinicio.Font = new Font("Georgia", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnReinicio.ImageAlign = ContentAlignment.TopCenter;
-            btnReinicio.Location = new Point(42, 461);
-            btnReinicio.Margin = new Padding(1);
-            btnReinicio.Name = "btnReinicio";
-            btnReinicio.Size = new Size(250, 40);
-            btnReinicio.TabIndex = 12;
-            btnReinicio.TabStop = false;
-            btnReinicio.Text = "Reinicio";
-            btnReinicio.TextImageRelation = TextImageRelation.TextAboveImage;
-            btnReinicio.UseVisualStyleBackColor = false;
+            btnChamadosAbertos.BackColor = Color.FromArgb(249, 239, 168);
+            btnChamadosAbertos.FlatStyle = FlatStyle.Flat;
+            btnChamadosAbertos.Font = new Font("Georgia", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnChamadosAbertos.ImageAlign = ContentAlignment.TopCenter;
+            btnChamadosAbertos.Location = new Point(42, 349);
+            btnChamadosAbertos.Margin = new Padding(1);
+            btnChamadosAbertos.Name = "btnChamadosAbertos";
+            btnChamadosAbertos.Size = new Size(250, 40);
+            btnChamadosAbertos.TabIndex = 11;
+            btnChamadosAbertos.TabStop = false;
+            btnChamadosAbertos.Text = "Chamados abertos";
+            btnChamadosAbertos.TextImageRelation = TextImageRelation.TextAboveImage;
+            btnChamadosAbertos.UseVisualStyleBackColor = false;
+            btnChamadosAbertos.Click += btnChamadosAbertos_Click;
             // 
             // PanelChat
             // 
             PanelChat.BackColor = Color.FromArgb(237, 235, 191);
             PanelChat.BorderStyle = BorderStyle.FixedSingle;
-            PanelChat.Controls.Add(panel1);
             PanelChat.Location = new Point(343, 12);
             PanelChat.Name = "PanelChat";
             PanelChat.Size = new Size(353, 657);
             PanelChat.TabIndex = 13;
+            PanelChat.Paint += PanelChat_Paint;
             // 
             // btnVoltar
             // 
@@ -162,26 +125,6 @@
             btnVoltar.UseVisualStyleBackColor = false;
             btnVoltar.Click += btnVoltar_Click;
             // 
-            // panel1
-            // 
-            panel1.BackColor = Color.White;
-            panel1.BorderStyle = BorderStyle.FixedSingle;
-            panel1.Controls.Add(label1);
-            panel1.Location = new Point(20, 16);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(312, 125);
-            panel1.TabIndex = 0;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Georgia", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(60, 39);
-            label1.Name = "label1";
-            label1.Size = new Size(186, 46);
-            label1.TabIndex = 0;
-            label1.Text = "Historico";
-            // 
             // Historico
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -190,20 +133,16 @@
             ClientSize = new Size(710, 681);
             Controls.Add(btnVoltar);
             Controls.Add(PanelChat);
-            Controls.Add(btnReinicio);
-            Controls.Add(btnAtendente);
-            Controls.Add(BtnFeedback);
+            Controls.Add(btnChamadosAbertos);
             Controls.Add(ChatVoltar);
             Controls.Add(panel2);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Location = new Point(37, 221);
             Margin = new Padding(3, 4, 3, 4);
             Name = "Historico";
             Text = "Historico";
             Load += Historico_Load;
             panel2.ResumeLayout(false);
-            PanelChat.ResumeLayout(false);
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -212,12 +151,8 @@
         private Panel panel2;
         public Button btnHistorico;
         public Button ChatVoltar;
-        public Button BtnFeedback;
-        public Button btnAtendente;
-        public Button btnReinicio;
+        public Button btnChamadosAbertos;
         private Panel PanelChat;
         public Button btnVoltar;
-        private Panel panel1;
-        private Label label1;
     }
 }

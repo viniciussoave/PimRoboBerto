@@ -4,9 +4,10 @@ using Aplicação.Interfaces_Caso_De_Uso;
 using Aplicação.Interfaces_Caso_De_Uso_e_Servicos;
 using Aplicação.Servicos;
 using Aplicacao.Servicos;
-using ConexaoBancoDeDados.Repositorio;
-using Dominio.Interface_conexao_banco_de_dados;
+using Dominio.Interface_InfraEstrutura;
 using Dominio.Interface_Repositorios;
+using Infraestrutura.Repositorio;
+using Infraestrutura;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
@@ -32,7 +33,21 @@ namespace WinFormsApp2
 
         private static ServiceProvider ConfigureServices()
         {
+
+
             var services = new ServiceCollection();
+            // No Program.cs
+            var smtpConfig = new SmtpConfig
+            {
+                Servidor = "email-ssl.com.br",
+                Porta = 587,
+                Usuario = "vinicius.soave@scti.com.br", // Seu e-mail de envio
+                Senha = ",[R>)%A2.V+kNF<P",      // Senha específica para aplicativos
+                Remetente = "vinicius.soave@scti.com.br",
+                Ssl = true
+            };
+
+            services.AddSingleton(smtpConfig);
 
             services.AddSingleton<IUsuarioRepositorio,UsuarioRepositorio>();
 
@@ -42,10 +57,12 @@ namespace WinFormsApp2
             services.AddTransient<IRecuperarSenhaUseCase, RecuperarSenhaUseCase>();
             services.AddTransient<IConfirmarCodigoVerificacaoUseCase, ConfirmarCodigoVerificacaoUseCase>();
             services.AddTransient<IRegistrarChamadoUseCase, RegistrarChamadoUseCase>();
+            services.AddTransient<IListarChamadosAbertosUseCase,ListarChamadosAbertosUseCase>();
 
             services.AddSingleton<IServicoRepositorio, ServicoRepositorio>();
             services.AddSingleton<IChamadoRepositorio, ChamadoRepositorio>();
             services.AddSingleton<ISolucaoRepositorio, SolucaoRepositorio>();
+
 
             services.AddTransient<ICodigoVerificacaoServico, CodigoVerificacaoServico>();
             services.AddScoped<IEnviarEmailServico, EnviarEmailServico>();
@@ -58,6 +75,8 @@ namespace WinFormsApp2
             services.AddTransient<FormLogin>();
             services.AddTransient<Historico>();
             services.AddTransient<FrmEsqueciASenha>();
+            services.AddTransient<FormChamadosAbertos>();
+
             services.AddScoped<IPostgresAdaptador, PostgresAdaptador>();
 
 

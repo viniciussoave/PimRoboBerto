@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dominio.Interface_conexao_banco_de_dados
+namespace Dominio.Interface_InfraEstrutura
 {
     public interface IPostgresAdaptador
     {

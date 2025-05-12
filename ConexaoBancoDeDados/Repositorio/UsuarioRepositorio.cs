@@ -1,5 +1,5 @@
 ﻿using Dominio.Entidades;
-using Dominio.Interface_conexao_banco_de_dados;
+using Dominio.Interface_InfraEstrutura;
 using Dominio.Interface_Repositorios;
 using Npgsql;
 using System;
@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WinFormsApp2;
 
-namespace ConexaoBancoDeDados.Repositorio
+namespace Infraestrutura.Repositorio
 {
     public class UsuarioRepositorio : IUsuarioRepositorio
     {

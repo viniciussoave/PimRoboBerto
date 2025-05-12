@@ -1,44 +1,66 @@
 ﻿using Aplicação.Interfaces_Caso_De_Uso_e_Servicos;
 using Aplicação.RespostaPadrao;
-using Aplicação.Servicos;
+using Dominio.Interface_InfraEstrutura;
 using Dominio.Interface_Repositorios;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Aplicação.Casos_de_Uso
 {
     public class RecuperarSenhaUseCase : IRecuperarSenhaUseCase
     {
-        string emailOrigem = "douglas.engratulis@aluno.unip.br";
         private readonly IUsuarioRepositorio _usuarioRepositorio;
         private readonly IEnviarEmailServico _enviarEmailServico;
-        private readonly ICodigoVerificacaoServico _codigoVerificacaoEmail;
+        private readonly ICodigoVerificacaoServico _codigoVerificacaoServico;
 
-        public RecuperarSenhaUseCase(IUsuarioRepositorio usuarioRepositorio, IEnviarEmailServico enviarEmailServico, ICodigoVerificacaoServico codigoVerificacaoEmail)
+        public RecuperarSenhaUseCase(
+            IUsuarioRepositorio usuarioRepositorio,
+            IEnviarEmailServico enviarEmailServico,
+            ICodigoVerificacaoServico codigoVerificacaoServico)
         {
             _usuarioRepositorio = usuarioRepositorio;
             _enviarEmailServico = enviarEmailServico;
-            _codigoVerificacaoEmail = codigoVerificacaoEmail;
+            _codigoVerificacaoServico = codigoVerificacaoServico;
         }
+
         public async Task<(RespostaPadrao<string>, string codigoVerificacao)> Executar(string email)
         {
+            // 1. Validação de domínio
             if (!_usuarioRepositorio.ExisteEmail(email))
             {
-                return (RespostaPadrao<string>.Falha(false, "Registro de usuário", "Email não cadastrado no sistema"),string.Empty);
+                return (RespostaPadrao<string>.Falha(
+                    procede: false,
+                    mensagem: "Email não cadastrado no sistema",
+                    dados: "Registro de usuário"),
+                    string.Empty);
             }
-             var codigoVerificacao = _codigoVerificacaoEmail.GerarCodigo();
 
-            bool emailEnviado = await _enviarEmailServico.EnviarEmail(email, emailOrigem, $"Seu código de recuperação é: {codigoVerificacao}", "Codigo verificação");
+            // 2. Geração do código
+            var codigoVerificacao = _codigoVerificacaoServico.GerarCodigo();
+
+            // 3. Envio de email
+            var assunto = "Código de Verificação - Recuperação de Senha";
+            var corpo = $"Seu código de verificação é: {codigoVerificacao}";
+
+            bool emailEnviado = await _enviarEmailServico.EnviarEmail(
+                destinatario: email,
+                assunto: assunto,
+                corpo: corpo);
 
             if (!emailEnviado)
             {
-                return (RespostaPadrao<string>.Falha(false, "Recuperação email", "Erro ao enviar a verificação, contate o suporte!"),string.Empty);
+                return (RespostaPadrao<string>.Falha(
+                    procede: false,
+                    mensagem: "Falha ao enviar código de verificação",
+                    dados: "Serviço de Email"),
+                    string.Empty);
             }
-            return (RespostaPadrao<string>.Sucesso(true, "Recuperação email", "Código de verificação enviado com sucesso!"), codigoVerificacao);
-        }
 
+            // 4. Retorno de sucesso
+            return (RespostaPadrao<string>.Sucesso(
+                procede: true,
+                mensagem: "Código de verificação enviado com sucesso",
+                dados: "Recuperação de Senha"),
+                codigoVerificacao);
+        }
     }
 }

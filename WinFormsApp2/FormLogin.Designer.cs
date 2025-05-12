@@ -32,6 +32,7 @@
             btnEntrar = new Button();
             panel2 = new Panel();
             PanelMsgs = new Panel();
+            linkLblEsqueciSenha = new LinkLabel();
             checkBox1 = new CheckBox();
             textBoxSenha = new TextBox();
             textBoxUsuario = new TextBox();
@@ -39,7 +40,6 @@
             labelUsuario = new Label();
             btnVoltar = new Button();
             label1 = new Label();
-            linkLblEsqueciSenha = new LinkLabel();
             PanelMsgs.SuspendLayout();
             SuspendLayout();
             // 
@@ -85,6 +85,18 @@
             PanelMsgs.Name = "PanelMsgs";
             PanelMsgs.Size = new Size(350, 256);
             PanelMsgs.TabIndex = 9;
+            // 
+            // linkLblEsqueciSenha
+            // 
+            linkLblEsqueciSenha.AutoSize = true;
+            linkLblEsqueciSenha.LinkColor = Color.FromArgb(192, 0, 192);
+            linkLblEsqueciSenha.Location = new Point(47, 160);
+            linkLblEsqueciSenha.Name = "linkLblEsqueciSenha";
+            linkLblEsqueciSenha.Size = new Size(113, 20);
+            linkLblEsqueciSenha.TabIndex = 20;
+            linkLblEsqueciSenha.TabStop = true;
+            linkLblEsqueciSenha.Text = "Esqueci a senha";
+            linkLblEsqueciSenha.LinkClicked += linkLblEsqueciSenha_LinkClicked;
             // 
             // checkBox1
             // 
@@ -164,18 +176,6 @@
             label1.TabIndex = 12;
             label1.Text = "RoboBerto ChatBot";
             // 
-            // linkLblEsqueciSenha
-            // 
-            linkLblEsqueciSenha.AutoSize = true;
-            linkLblEsqueciSenha.LinkColor = Color.FromArgb(192, 0, 192);
-            linkLblEsqueciSenha.Location = new Point(47, 160);
-            linkLblEsqueciSenha.Name = "linkLblEsqueciSenha";
-            linkLblEsqueciSenha.Size = new Size(113, 20);
-            linkLblEsqueciSenha.TabIndex = 20;
-            linkLblEsqueciSenha.TabStop = true;
-            linkLblEsqueciSenha.Text = "Esqueci a senha";
-            linkLblEsqueciSenha.LinkClicked += linkLblEsqueciSenha_LinkClicked;
-            // 
             // FormLogin
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -186,6 +186,7 @@
             Controls.Add(panel2);
             Controls.Add(PanelMsgs);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "FormLogin";
             Text = "Login - RoboBerto ChatBot";

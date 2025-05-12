@@ -16,7 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Aplicação\Aplicação.csproj" />
-    <ProjectReference Include="..\ConexaoBancoDeDados\ConexaoBancoDeDados.csproj" />
+    <ProjectReference Include="..\ConexaoBancoDeDados\Infraestrutura.csproj" />
     <ProjectReference Include="..\Dominio\Dominio.csproj" />
   </ItemGroup>
 

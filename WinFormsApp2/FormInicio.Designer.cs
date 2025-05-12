@@ -111,6 +111,7 @@
             Controls.Add(panel2);
             Controls.Add(PanelMsgs);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "FormInicio";
             Text = "Inicio - RoboBerto ChatBot";

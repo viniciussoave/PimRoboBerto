@@ -105,7 +105,7 @@ namespace WinFormsApp2
 
             }
 
-            MessageBox.Show("Login", resposta.Mensagem, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            MessageBox.Show(resposta.Mensagem, "Login", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)

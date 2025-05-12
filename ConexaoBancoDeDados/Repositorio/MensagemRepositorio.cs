@@ -1,11 +1,11 @@
 ﻿using Dominio.Entidades;
 using Dominio.Interface_Repositorios;
-using Dominio.Interface_conexao_banco_de_dados;
 using Npgsql;
 using System;
 using System.Collections.Generic;
+using Dominio.Interface_InfraEstrutura;
 
-namespace ConexaoBancoDeDados.Repositorio
+namespace Infraestrutura.Repositorio
 {
     public class MensagemRepositorio : IMensagemRepositorio
     {

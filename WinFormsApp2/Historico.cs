@@ -16,6 +16,8 @@ namespace WinFormsApp2
 
         private FormInicio _frmInicio;
         private FormChat _frmChat;
+        private Historico _frmHistorico;
+        private FormChamadosAbertos _frmChamadosAbertos;
         private readonly IServiceProvider _serviceProvider;
         private bool _estaTrocandoTela = false;
 
@@ -58,6 +60,21 @@ namespace WinFormsApp2
         private void Historico_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void PanelChat_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btnChamadosAbertos_Click(object sender, EventArgs e)
+        {
+            _estaTrocandoTela = true;
+            this.Close();
+            _frmChamadosAbertos = _serviceProvider.GetRequiredService<FormChamadosAbertos>();
+            _frmChamadosAbertos.StartPosition = FormStartPosition.Manual;
+            _frmChamadosAbertos.Location = this.Location;
+            _frmChamadosAbertos.Show();
         }
     }
 }

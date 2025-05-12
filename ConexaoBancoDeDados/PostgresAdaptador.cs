@@ -1,4 +1,6 @@
-﻿using Dominio.Interface_conexao_banco_de_dados;
+﻿
+using Dominio.Interface_InfraEstrutura;
+
 using Npgsql;
 using System;
 using System.Collections.Generic;
