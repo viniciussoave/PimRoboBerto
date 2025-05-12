@@ -7,7 +7,7 @@ namespace WinFormsApp2
     public partial class FormLogin : Form
     {
         private bool _estaTrocandoTela = false;
-        private Historico _frmHistorico;
+        private FormInicio2 _frmHistorico;
         private FormInicio _frmInicio;
         private FrmEsqueciASenha _frmEsqueciASenha;
         private readonly IRealizarLoginUseCase _realizarLoginUseCase;
@@ -87,7 +87,7 @@ namespace WinFormsApp2
                     _estaTrocandoTela = true;
                     this.Close();
 
-                    _frmHistorico = _serviceProvider.GetRequiredService<Historico>();
+                    _frmHistorico = _serviceProvider.GetRequiredService<FormInicio2>();
                     _frmHistorico.StartPosition = FormStartPosition.Manual;
                     _frmHistorico.Location = this.Location;
                     _frmHistorico.Show();
@@ -97,7 +97,7 @@ namespace WinFormsApp2
 
                 _estaTrocandoTela = true;
                 this.Close();
-                _frmHistorico = _serviceProvider.GetRequiredService<Historico>();
+                _frmHistorico = _serviceProvider.GetRequiredService<FormInicio2>();
                 _frmHistorico.StartPosition = FormStartPosition.Manual;
                 _frmHistorico.Location = this.Location;
                 _frmHistorico.Show();

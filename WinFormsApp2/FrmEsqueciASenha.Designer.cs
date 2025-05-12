@@ -28,17 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmEsqueciASenha));
             txtEmail = new TextBox();
             BtnEnviarConfirmacao = new Button();
             lblInsiraEmail = new Label();
-            lblInsiraCodigo = new Label();
-            btnConfirmarCódigo = new Button();
-            txtCodigo = new TextBox();
+            btnChat = new Button();
+            panel2 = new Panel();
+            btnVoltar = new Button();
             SuspendLayout();
             // 
             // txtEmail
             // 
-            txtEmail.Location = new Point(33, 64);
+            txtEmail.Location = new Point(344, 65);
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(225, 27);
             txtEmail.TabIndex = 0;
@@ -46,59 +47,72 @@
             // 
             // BtnEnviarConfirmacao
             // 
-            BtnEnviarConfirmacao.Location = new Point(33, 108);
+            BtnEnviarConfirmacao.Location = new Point(344, 109);
             BtnEnviarConfirmacao.Name = "BtnEnviarConfirmacao";
             BtnEnviarConfirmacao.Size = new Size(225, 29);
             BtnEnviarConfirmacao.TabIndex = 1;
-            BtnEnviarConfirmacao.Text = "Enviar Confirmação no email";
+            BtnEnviarConfirmacao.Text = "Enviar código no email";
             BtnEnviarConfirmacao.UseVisualStyleBackColor = true;
             BtnEnviarConfirmacao.Click += BtnEnviarConfirmacao_Click;
             // 
             // lblInsiraEmail
             // 
             lblInsiraEmail.AutoSize = true;
-            lblInsiraEmail.Location = new Point(33, 41);
+            lblInsiraEmail.Location = new Point(344, 42);
             lblInsiraEmail.Name = "lblInsiraEmail";
             lblInsiraEmail.Size = new Size(101, 20);
             lblInsiraEmail.TabIndex = 2;
             lblInsiraEmail.Text = "Insira o email:";
             // 
-            // lblInsiraCodigo
+            // btnChat
             // 
-            lblInsiraCodigo.AutoSize = true;
-            lblInsiraCodigo.Location = new Point(33, 161);
-            lblInsiraCodigo.Name = "lblInsiraCodigo";
-            lblInsiraCodigo.Size = new Size(208, 20);
-            lblInsiraCodigo.TabIndex = 5;
-            lblInsiraCodigo.Text = "Insira o código de verificação:";
-            lblInsiraCodigo.Click += lblInsiraCodigo_Click;
+            btnChat.BackColor = Color.FromArgb(249, 239, 168);
+            btnChat.FlatStyle = FlatStyle.Flat;
+            btnChat.Font = new Font("Georgia", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnChat.ImageAlign = ContentAlignment.TopCenter;
+            btnChat.Location = new Point(31, 301);
+            btnChat.Margin = new Padding(1);
+            btnChat.Name = "btnChat";
+            btnChat.Size = new Size(250, 40);
+            btnChat.TabIndex = 21;
+            btnChat.TabStop = false;
+            btnChat.Text = "Chat";
+            btnChat.TextImageRelation = TextImageRelation.TextAboveImage;
+            btnChat.UseVisualStyleBackColor = false;
             // 
-            // btnConfirmarCódigo
+            // panel2
             // 
-            btnConfirmarCódigo.Location = new Point(33, 228);
-            btnConfirmarCódigo.Name = "btnConfirmarCódigo";
-            btnConfirmarCódigo.Size = new Size(225, 29);
-            btnConfirmarCódigo.TabIndex = 4;
-            btnConfirmarCódigo.Text = "Confirmar Código";
-            btnConfirmarCódigo.UseVisualStyleBackColor = true;
-            btnConfirmarCódigo.Click += btnConfirmarCódigo_Click;
+            panel2.BackgroundImage = (Image)resources.GetObject("panel2.BackgroundImage");
+            panel2.BackgroundImageLayout = ImageLayout.Stretch;
+            panel2.Location = new Point(31, 29);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(250, 251);
+            panel2.TabIndex = 20;
             // 
-            // txtCodigo
+            // btnVoltar
             // 
-            txtCodigo.Location = new Point(33, 184);
-            txtCodigo.Name = "txtCodigo";
-            txtCodigo.Size = new Size(225, 27);
-            txtCodigo.TabIndex = 3;
-            txtCodigo.TextChanged += txtCodigo_TextChanged;
+            btnVoltar.BackColor = Color.FromArgb(249, 239, 168);
+            btnVoltar.FlatStyle = FlatStyle.Flat;
+            btnVoltar.Font = new Font("Georgia", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnVoltar.ImageAlign = ContentAlignment.TopCenter;
+            btnVoltar.Location = new Point(43, 471);
+            btnVoltar.Margin = new Padding(1);
+            btnVoltar.Name = "btnVoltar";
+            btnVoltar.Size = new Size(106, 40);
+            btnVoltar.TabIndex = 22;
+            btnVoltar.TabStop = false;
+            btnVoltar.Text = "Voltar";
+            btnVoltar.TextImageRelation = TextImageRelation.TextAboveImage;
+            btnVoltar.UseVisualStyleBackColor = false;
             // 
             // FrmEsqueciASenha
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(737, 453);
-            Controls.Add(lblInsiraCodigo);
-            Controls.Add(btnConfirmarCódigo);
-            Controls.Add(txtCodigo);
+            ClientSize = new Size(710, 681);
+            Controls.Add(btnVoltar);
+            Controls.Add(btnChat);
+            Controls.Add(panel2);
             Controls.Add(lblInsiraEmail);
             Controls.Add(BtnEnviarConfirmacao);
             Controls.Add(txtEmail);
@@ -114,8 +128,8 @@
         private TextBox txtEmail;
         private Button BtnEnviarConfirmacao;
         private Label lblInsiraEmail;
-        private Label lblInsiraCodigo;
-        private Button btnConfirmarCódigo;
-        private TextBox txtCodigo;
+        public Button btnChat;
+        private Panel panel2;
+        public Button btnVoltar;
     }
 }

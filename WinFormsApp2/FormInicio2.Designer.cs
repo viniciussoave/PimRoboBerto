@@ -1,6 +1,6 @@
 ﻿namespace WinFormsApp2
 {
-    partial class Historico
+    partial class FormInicio2
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Historico));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormInicio2));
             panel2 = new Panel();
             btnHistorico = new Button();
             ChatVoltar = new Button();

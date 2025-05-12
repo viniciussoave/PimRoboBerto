@@ -14,7 +14,7 @@ namespace WinFormsApp2
         private bool _estaTrocandoTela = false;
         private bool _aguardandoConfirmacaoChamado = false;
         private FormInicio _frmInicio;
-        private Historico _frmHistorico;
+        private FormInicio2 _frmHistorico;
         private FormChamadosAbertos _frmChamadosAbertos;
         private readonly IServiceProvider _serviceProvider;
         private FlowLayoutPanel _flowPanel;

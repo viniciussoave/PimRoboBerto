@@ -53,21 +53,7 @@ namespace WinFormsApp2
 
         }
 
-        private void btnConfirmarCódigo_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(txtCodigo.Text))
-            {
-                MessageBox.Show("Campo do código em branco!");
-                return;
-            }
-
-            var resposta = _confirmarCodigoVerificacao.Executar(_codigoVerificacaoGerado, txtCodigo.Text);
-            
-            MessageBoxIcon icone = resposta.Procede ? MessageBoxIcon.Information : MessageBoxIcon.Warning;
-            MessageBox.Show(resposta.Dados, resposta.Mensagem, MessageBoxButtons.OK, icone);
-
-
-        }
+       
         private async void BtnEnviarConfirmacao_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtEmail.Text))

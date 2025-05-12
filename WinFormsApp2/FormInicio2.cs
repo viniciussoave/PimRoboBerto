@@ -11,17 +11,17 @@ using System.Windows.Forms;
 
 namespace WinFormsApp2
 {
-    public partial class Historico : Form
+    public partial class FormInicio2 : Form
     {
 
         private FormInicio _frmInicio;
         private FormChat _frmChat;
-        private Historico _frmHistorico;
+        private FormInicio2 _frmHistorico;
         private FormChamadosAbertos _frmChamadosAbertos;
         private readonly IServiceProvider _serviceProvider;
         private bool _estaTrocandoTela = false;
 
-        public Historico(FormInicio frmInicio, IServiceProvider serviceProvider)
+        public FormInicio2(FormInicio frmInicio, IServiceProvider serviceProvider)
         {
             _frmInicio = frmInicio;
             _serviceProvider = serviceProvider;
