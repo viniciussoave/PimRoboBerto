@@ -53,19 +53,30 @@ namespace WinFormsApp2
 
         }
 
-       
+
         private async void BtnEnviarConfirmacao_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtEmail.Text))
             {
-                MessageBox.Show("Campo do email em branco!");
+                MessageBox.Show("Digite seu email!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            var (resposta, _codigoVerificacaoGerado) = await _recuperarSenhaUseCase.Executar(txtEmail.Text);
 
-            MessageBoxIcon icone = resposta.Procede ? MessageBoxIcon.Information : MessageBoxIcon.Warning;
-            MessageBox.Show(resposta.Dados, resposta.Mensagem, MessageBoxButtons.OK, icone);
-        
+            var resultado = await _recuperarSenhaUseCase.Executar(txtEmail.Text);
+
+            if (resultado.Procede)
+            {
+                // O código já foi salvo como nova senha no banco pelo use case
+                MessageBox.Show($"Sua nova senha foi enviada por email:\nUse-a para fazer login.",
+                                "Senha Alterada",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show(resultado.Mensagem, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

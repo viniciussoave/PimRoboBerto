@@ -14,6 +14,10 @@ namespace Dominio.Interface_Repositorios
         public bool ExisteEmail(string email);
         public bool NomeUsuarioExiste(string nomeUsuario);
         public Usuario RecuperarPorNome(string nome);
+        public bool AtualizarSenha(string email, string novaSenha);
+        public Usuario RecuperarPorEmail(string email);
+
+
 
     }
 }

@@ -120,12 +120,12 @@
             btnVoltar.Size = new Size(106, 40);
             btnVoltar.TabIndex = 14;
             btnVoltar.TabStop = false;
-            btnVoltar.Text = "Voltar";
+            btnVoltar.Text = "Sair";
             btnVoltar.TextImageRelation = TextImageRelation.TextAboveImage;
             btnVoltar.UseVisualStyleBackColor = false;
             btnVoltar.Click += btnVoltar_Click;
             // 
-            // Historico
+            // FormInicio2
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -139,7 +139,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Location = new Point(37, 221);
             Margin = new Padding(3, 4, 3, 4);
-            Name = "Historico";
+            Name = "FormInicio2";
             Text = "Historico";
             Load += Historico_Load;
             panel2.ResumeLayout(false);

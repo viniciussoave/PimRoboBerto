@@ -35,7 +35,7 @@ namespace WinFormsApp2
 
         private void ConfigurarDataGrid()
         {
-            dgvChamadosAbertos.DataSource = _listarChamadosAbertosUseCase.Executar();
+            dgvChamadosAbertos.DataSource = _listarChamadosAbertosUseCase.Executar(); // um data source recebendo a lista de todos os chamados do banco.
 
             dgvChamadosAbertos.RowsDefaultCellStyle = new DataGridViewCellStyle
             {

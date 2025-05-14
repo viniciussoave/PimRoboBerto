@@ -196,7 +196,7 @@ namespace WinFormsApp2
                     // Exibe a mensagem de sucesso/erro
                     if (resultado.Procede)
                     {
-                        // Acessa o número do chamado como int (sem formatação)
+                        
                         AdicionarMensagemBot($"✅ Chamado {resultado.Dados.numerochamado} registrado!");
                     }
                     else
@@ -216,11 +216,10 @@ namespace WinFormsApp2
                 return;
             }
 
-            // ... (restante do método permanece igual)
 
             if (int.TryParse(resposta.Trim(), out int numero))
             {
-                // Opção 0 para voltar ao menu anterior (mantido original)
+                // Opção 0 para voltar ao menu anterior 
                 if (numero == 0)
                 {
                     MostrarMenuPrincipal();
@@ -229,7 +228,7 @@ namespace WinFormsApp2
                     return;
                 }
 
-                // Se estiver em estado de escolha de filhos (mantido original)
+                // Se estiver em estado de escolha de filhos 
                 if (_emEscolhaFilho)
                 {
                     var servicoSelecionadoFilho = _servicoPaiAtual.Filhos.ElementAtOrDefault(numero - 1);
@@ -267,7 +266,7 @@ namespace WinFormsApp2
                     }
                 }
 
-                // Restante do código original mantido igual ↓
+           
                 var servicoSelecionado = _servicosCarregados
                     .Where(s => s.ServicoPaiId == null)
                     .ElementAtOrDefault(numero - 1);

@@ -51,6 +51,12 @@ namespace Dominio.Entidades
             return true;
         }
 
+        public void AlterarSenha(string novaSenha)
+        {
+        
+            Senha = novaSenha;
+    
+        }
         public bool VerificarSenha(string senhaDigitada)
         {
             return Senha == senhaDigitada; 

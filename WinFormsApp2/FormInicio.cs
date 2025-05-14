@@ -34,9 +34,9 @@ namespace WinFormsApp2
         }
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            _formRegistrar = _serviceProvider.GetRequiredService<FormRegistrar>();
-            _formRegistrar.ShowDialog();
+            this.Hide(); // escondo o formulario anterior 
+            _formRegistrar = _serviceProvider.GetRequiredService<FormRegistrar>(); // chamo a instancia
+            _formRegistrar.ShowDialog(); // mostro o novo
         }
         private void FormInicio_Load(object sender, EventArgs e)
         {

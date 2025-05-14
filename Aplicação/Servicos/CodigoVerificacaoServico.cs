@@ -16,9 +16,5 @@ namespace Aplicação.Servicos
             return rand.Next(100000, 999999).ToString();
         }
 
-        public bool VerificarCodigo(string codigo, string entradaUsuario)
-        {
-            return codigo.Equals(entradaUsuario);
-        }
     }
 }

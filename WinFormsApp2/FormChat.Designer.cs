@@ -142,7 +142,7 @@
             btnVoltar.Size = new Size(106, 40);
             btnVoltar.TabIndex = 13;
             btnVoltar.TabStop = false;
-            btnVoltar.Text = "Voltar";
+            btnVoltar.Text = "Sair";
             btnVoltar.TextImageRelation = TextImageRelation.TextAboveImage;
             btnVoltar.UseVisualStyleBackColor = false;
             btnVoltar.Click += btnVoltar_Click;

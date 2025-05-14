@@ -32,9 +32,7 @@
             txtEmail = new TextBox();
             BtnEnviarConfirmacao = new Button();
             lblInsiraEmail = new Label();
-            btnChat = new Button();
             panel2 = new Panel();
-            btnVoltar = new Button();
             SuspendLayout();
             // 
             // txtEmail
@@ -64,22 +62,6 @@
             lblInsiraEmail.TabIndex = 2;
             lblInsiraEmail.Text = "Insira o email:";
             // 
-            // btnChat
-            // 
-            btnChat.BackColor = Color.FromArgb(249, 239, 168);
-            btnChat.FlatStyle = FlatStyle.Flat;
-            btnChat.Font = new Font("Georgia", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnChat.ImageAlign = ContentAlignment.TopCenter;
-            btnChat.Location = new Point(31, 301);
-            btnChat.Margin = new Padding(1);
-            btnChat.Name = "btnChat";
-            btnChat.Size = new Size(250, 40);
-            btnChat.TabIndex = 21;
-            btnChat.TabStop = false;
-            btnChat.Text = "Chat";
-            btnChat.TextImageRelation = TextImageRelation.TextAboveImage;
-            btnChat.UseVisualStyleBackColor = false;
-            // 
             // panel2
             // 
             panel2.BackgroundImage = (Image)resources.GetObject("panel2.BackgroundImage");
@@ -89,29 +71,11 @@
             panel2.Size = new Size(250, 251);
             panel2.TabIndex = 20;
             // 
-            // btnVoltar
-            // 
-            btnVoltar.BackColor = Color.FromArgb(249, 239, 168);
-            btnVoltar.FlatStyle = FlatStyle.Flat;
-            btnVoltar.Font = new Font("Georgia", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnVoltar.ImageAlign = ContentAlignment.TopCenter;
-            btnVoltar.Location = new Point(43, 471);
-            btnVoltar.Margin = new Padding(1);
-            btnVoltar.Name = "btnVoltar";
-            btnVoltar.Size = new Size(106, 40);
-            btnVoltar.TabIndex = 22;
-            btnVoltar.TabStop = false;
-            btnVoltar.Text = "Voltar";
-            btnVoltar.TextImageRelation = TextImageRelation.TextAboveImage;
-            btnVoltar.UseVisualStyleBackColor = false;
-            // 
             // FrmEsqueciASenha
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(710, 681);
-            Controls.Add(btnVoltar);
-            Controls.Add(btnChat);
             Controls.Add(panel2);
             Controls.Add(lblInsiraEmail);
             Controls.Add(BtnEnviarConfirmacao);
@@ -128,8 +92,6 @@
         private TextBox txtEmail;
         private Button BtnEnviarConfirmacao;
         private Label lblInsiraEmail;
-        public Button btnChat;
         private Panel panel2;
-        public Button btnVoltar;
     }
 }

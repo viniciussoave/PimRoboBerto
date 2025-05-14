@@ -20,13 +20,13 @@ namespace Aplicação.Casos_de_Uso
         public RespostaPadrao<string> Executar(string codigo, string entradaUsuario)
         {
            
-           var codigoCorreto = _codigoVerificacaoServico.VerificarCodigo(codigo, entradaUsuario);
-
-            if (!codigoCorreto)
-            {
-                return RespostaPadrao<string>.Falha(false, "Aviso","Codigo incorreto!");
-            }
-
+//         var codigoCorreto = _codigoVerificacaoServico.VerificarCodigo(codigo, entradaUsuario);
+//
+//          if (!codigoCorreto)
+//          {
+//              return RespostaPadrao<string>.Falha(false, "Aviso","Codigo incorreto!");
+//          }
+//
 
             return RespostaPadrao<string>.Sucesso(true, "Aviso", "Código correto!");
         }

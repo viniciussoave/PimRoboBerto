@@ -70,6 +70,7 @@ namespace WinFormsApp2
                 MessageBox.Show("Preencha todos os dados obrigatórios!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
+
             var loginDto = new LoginDTO
             {
                 Usuario = textBoxUsuario.Text,
