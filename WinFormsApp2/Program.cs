@@ -1,8 +1,8 @@
-using Aplicação.Casos_de_Uso;
+using AplicaÃ§Ã£o.Casos_de_Uso;
 using Aplicacao.CasosDeUso;
-using Aplicação.Interfaces_Caso_De_Uso;
-using Aplicação.Interfaces_Caso_De_Uso_e_Servicos;
-using Aplicação.Servicos;
+using AplicaÃ§Ã£o.Interfaces_Caso_De_Uso;
+using AplicaÃ§Ã£o.Interfaces_Caso_De_Uso_e_Servicos;
+using AplicaÃ§Ã£o.Servicos;
 using Aplicacao.Servicos;
 using Dominio.Interface_InfraEstrutura;
 using Dominio.Interface_Repositorios;
@@ -42,7 +42,7 @@ namespace WinFormsApp2
                 Servidor = "email-ssl.com.br",
                 Porta = 587,
                 Usuario = "vinicius.soave@scti.com.br", // Seu e-mail de envio
-                Senha = ",[R>)%A2.V+kNF<P",      // Senha específica para aplicativos
+                Senha = ",[R>)%A2.V+kNF<P",      // Senha especï¿½fica para aplicativos
                 Remetente = "vinicius.soave@scti.com.br",
                 Ssl = true
             };

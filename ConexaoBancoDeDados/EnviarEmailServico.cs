@@ -51,9 +51,9 @@ namespace Aplicação.Servicos
     {
         public string Servidor { get; set; } = "email-ssl.com.br";  // Servidor SMTP (ex: Gmail, Outlook)
         public int Porta { get; set; } = 587;                     // Porta do SMTP
-        public string Usuario { get; set; }                       // Email DO SISTEMA (ex: suporte@suaempresa.com)
-        public string Senha { get; set; }                         // Senha DO SISTEMA
-        public string Remetente { get; set; }                     // Email que aparece como "De:"
+        public string Usuario { get; set; }                     // Email DO SISTEMA (ex: suporte@suaempresa.com)
+        public string Senha { get; set; }                   // Senha DO SISTEMA
+        public string Remetente { get; set; }                    // Email que aparece como "De:"
         public bool Ssl { get; set; } = true;
     }
 }
