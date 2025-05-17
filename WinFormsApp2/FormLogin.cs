@@ -63,7 +63,7 @@ namespace WinFormsApp2
             _frmInicio.Show();
         }
 
-        private void btnEntrar_Click(object sender, EventArgs e)
+        public void btnEntrar_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(textBoxSenha.Text) || string.IsNullOrWhiteSpace(textBoxUsuario.Text))
             {
