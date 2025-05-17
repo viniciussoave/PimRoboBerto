@@ -35,13 +35,13 @@ namespace WinFormsApp2
             textBoxEmail.KeyPress += textBox_KeyPress;
         }
 
-       //public FormRegistrar(IRegistrarUsuarioUseCase registrarUsuarioUseCase, IRealizarLoginUseCase realizarLoginUseCase)
-       //{
-       //    _realizarLoginUseCase = realizarLoginUseCase;
-       //    _registrarUsuarioUseCase = registrarUsuarioUseCase;
-       //}
+        //public FormRegistrar(IRegistrarUsuarioUseCase registrarUsuarioUseCase, IRealizarLoginUseCase realizarLoginUseCase)
+        //{
+        //    _realizarLoginUseCase = realizarLoginUseCase;
+        //    _registrarUsuarioUseCase = registrarUsuarioUseCase;
+        //}
 
-      
+
 
         private void textBox_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -52,29 +52,29 @@ namespace WinFormsApp2
             }
         }
 
-//      public static bool IsValidEmail(string email)
-//      {
-//          if (string.IsNullOrWhiteSpace(email))
-//              return false;
-//
-//          try
-//          {
-//              string pattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
-//              Regex regex = new Regex(pattern, RegexOptions.IgnoreCase);
-//              return regex.IsMatch(email);
-//          }
-//          catch (RegexMatchTimeoutException)
-//          {
-//              return false;
-//          }
-//      }
-//
-//      static bool ContemDigitoEspecialOuNumero(string senha)
-//      {
-//          // Expressão regular para verificar dígitos especiais ou números
-//          string padrao = @"[\d\W]";
-//          return Regex.IsMatch(senha, padrao);
-//      }
+        //      public static bool IsValidEmail(string email)
+        //      {
+        //          if (string.IsNullOrWhiteSpace(email))
+        //              return false;
+        //
+        //          try
+        //          {
+        //              string pattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+        //              Regex regex = new Regex(pattern, RegexOptions.IgnoreCase);
+        //              return regex.IsMatch(email);
+        //          }
+        //          catch (RegexMatchTimeoutException)
+        //          {
+        //              return false;
+        //          }
+        //      }
+        //
+        //      static bool ContemDigitoEspecialOuNumero(string senha)
+        //      {
+        //          // Expressão regular para verificar dígitos especiais ou números
+        //          string padrao = @"[\d\W]";
+        //          return Regex.IsMatch(senha, padrao);
+        //      }
         private void FormRegistrar_Load(object sender, EventArgs e)
         {
 
@@ -142,6 +142,11 @@ namespace WinFormsApp2
         }
 
         private void textBoxEmail_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PanelMsgs_Paint(object sender, PaintEventArgs e)
         {
 
         }

@@ -83,7 +83,7 @@ namespace WinFormsApp2
             {
                 MessageBox.Show(resultado.Mensagem, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -95,5 +95,17 @@ namespace WinFormsApp2
             _frmLogin.Location = this.Location;
             _frmLogin.Show();
         }
+
+        private void PanelMsgs_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+       
     }
 }
