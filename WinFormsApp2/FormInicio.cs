@@ -17,8 +17,18 @@ namespace WinFormsApp2
         private readonly IServiceProvider _serviceProvider;
         private FormRegistrar _formRegistrar;
         private FormLogin _formLogin;
+        private IServiceProvider @object;
 
-        public FormInicio(IServiceProvider serviceProvider)
+        public FormInicio()
+        {
+        }
+
+        public FormInicio(IServiceProvider @object)
+        {
+            this.@object = @object;
+        }
+
+        public FormInicio(IRealizarLoginUseCase realizarLoginUseCase, IServiceProvider serviceProvider)
         {
             _serviceProvider = serviceProvider;
             InitializeComponent();
