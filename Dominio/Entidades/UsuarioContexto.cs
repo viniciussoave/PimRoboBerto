@@ -2,7 +2,7 @@
 
 public class UsuarioContexto
 {
-    private Usuario _usuarioLogado;
+    public Usuario _usuarioLogado;
 
     public void DefinirUsuario(Usuario usuario)
     {
