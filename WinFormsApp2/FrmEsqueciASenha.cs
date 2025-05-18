@@ -60,7 +60,7 @@ namespace WinFormsApp2
         }
 
 
-        private async void BtnEnviarConfirmacao_Click(object sender, EventArgs e)
+        public async void BtnEnviarConfirmacao_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtEmail.Text))
             {
