@@ -20,9 +20,10 @@ namespace WinFormsApp2
         public NpgsqlConnection ObterConexao()
         {
 
-            string conexao ="Host=localhost;Port=5432;Username=postgres;Password=1234;Database=roboberto";
+            string conexao ="Host=localhost;Port=5432;Username=postgres;Password=evolut;Database=RoboBerto";
             NpgsqlConnection conn = new NpgsqlConnection(conexao);
             return conn;
+
         }
 
     //  public void openConnection()
