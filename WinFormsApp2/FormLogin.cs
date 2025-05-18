@@ -29,6 +29,10 @@ namespace WinFormsApp2
             textBoxSenha.KeyPress += textBox_enterPress;
         }
 
+        public FormLogin()
+        {
+        }
+
 
         //Essa variavel é usada para conseguirmos encerrar esse formulario quando apertar em voltar
         private void textBox_KeyPress(object sender, KeyPressEventArgs e)
