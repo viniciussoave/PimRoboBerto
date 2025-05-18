@@ -18,7 +18,7 @@ namespace Aplicação.Tests.Casos_de_Uso
         }
 
         [Fact]
-        public void Deve_retornar_falha_se_email_ja_existir()
+        public void Se_email_ja_existir_Vai_Falhar()
         {
             // Arrange
             var dto = new UsuarioDTO
@@ -39,7 +39,7 @@ namespace Aplicação.Tests.Casos_de_Uso
         }
 
         [Fact]
-        public void Deve_retornar_falha_se_nome_usuario_ja_existir()
+        public void Se_nome_usuario_ja_existir_Vai_Falhar()
         {
             // Arrange
             var dto = new UsuarioDTO
@@ -61,12 +61,12 @@ namespace Aplicação.Tests.Casos_de_Uso
         }
 
         [Fact]
-        public void Deve_retornar_falha_se_validacao_do_usuario_falhar()
+        public void Vai_retornar_falha_se_validacao_do_usuario_falhar()
         {
             // Arrange
             var dto = new UsuarioDTO
             {
-                Nome = "", // inválido
+                Nome = "", 
                 Senha = "senha123",
                 Email = "valido@email.com"
             };
@@ -79,7 +79,7 @@ namespace Aplicação.Tests.Casos_de_Uso
 
             // Assert
             Assert.False(resposta.Procede);
-            Assert.Contains("Nome", resposta.Dados); // espera-se que o erro mencione o nome
+            Assert.Contains("Nome", resposta.Dados); 
         }
 
         
