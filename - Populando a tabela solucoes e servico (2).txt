@@ -1,0 +1,62 @@
+- Populando a tabela solucoes com as respectivas soluções e data de criação
+INSERT INTO solucoes (id, solucao, idservicopai, datacriacao) 
+VALUES 
+('b88e7a4f-dba0-4b4f-9243-efc5e79c4b95', 'Configuração do roteador', '3c4738ae-9db0-45dc-aeb7-d5b1078120cb', NOW()),
+('f0326b73-b126-4c32-9a31-3a7f6c8e33cc', 'Verificação de conexão de cabo', '3c4738ae-9db0-45dc-aeb7-d5b1078120cb', NOW()),
+('717b2c66-bb2b-465a-97da-e34a2f9f60e7', 'Ajustes no modem', '3c4738ae-9db0-45dc-aeb7-d5b1078120cb', NOW()),
+('2b7e5a7c-b84b-4fc3-8e35-d8c5457bfb12', 'Verificação do servidor de backup', '40dbddd4-790a-4553-aa45-cbae9183e7f5', NOW()),
+('b9157e93-52c1-4a19-a063-8b3e8f836f43', 'Restaurar o backup a partir de uma data anterior', '40dbddd4-790a-4553-aa45-cbae9183e7f5', NOW()),
+('06a6cfd7-f431-46ed-9387-bf30c3aeff68', 'Verificar câmeras e gravações', 'e30353ec-61b3-4988-8568-365f1ed27a06', NOW()),
+('fbefb679-eadd-497a-bd16-f6a1f806109f', 'Reinstalar drivers de impressora', '0b0c7707-284c-4450-8f2d-89b7f75a192b', NOW()),
+('7731ec57-8c87-4177-bfcb-e85a7a35cc69', 'Reiniciar o serviço de impressora', '0b0c7707-284c-4450-8f2d-89b7f75a192b', NOW()),
+('c63265b2-82cb-47d1-84e1-5587c7cbe99e', 'Verificar serviços de antivírus', 'ab1b15f1-8e3e-443a-afb6-f691d06166dc', NOW()),
+('dd49893b-94a4-4c0a-9d19-366b3e73a4e3', 'Instalar atualizações de segurança', 'ab1b15f1-8e3e-443a-afb6-f691d06166dc', NOW()),
+('c3e99a19-015d-48ad-8106-53f45cf47e92', 'Trocar peça defeituosa no computador', '7f5575ca-b37a-434b-bc3f-e26f7c31d8aa', NOW()),
+('e128c707-b9a1-4bfa-93b6-23a010cf87bb', 'Reparar falhas de hardware na estação', '7f5575ca-b37a-434b-bc3f-e26f7c31d8aa', NOW()),
+('27bcba6d-52c3-4795-bb84-370bfa5c3029', 'Verificar configuração de rede', 'a4f63503-7bf2-45f3-a54d-a618a8d76e71', NOW()),
+('d63b47b3-c62d-43d9-bac1-d3774626b312', 'Alterar configurações de rede e IP', 'a4f63503-7bf2-45f3-a54d-a618a8d76e71', NOW()),
+('903d70d4-7b83-4d93-b9c0-b0b4e7cd5b76', 'Aumentar armazenamento ou mover dados', 'a4f63503-7bf2-45f3-a54d-a618a8d76e71', NOW()),
+('cf3acb25-945a-4968-810f-bd578db6f836', 'Limpar arquivos temporários e cache', 'a4f63503-7bf2-45f3-a54d-a618a8d76e71', NOW()),
+('4d7b0c0b-d747-4fd3-b8d3-846ccae5fe67', 'Problemas de configuração no e-mail', 'f5e2a9ea-f1d8-4ed3-a6f3-41a77ea66a57', NOW()),
+('8ca10a69-e9b7-4679-a0fc-d5f1a1c0e5f6', 'Verificar fila de envio e servidores de e-mail', 'f5e2a9ea-f1d8-4ed3-a6f3-41a77ea66a57', NOW());
+
+
+
+
+PRA POPULAR A TABELA SERVICO
+
+INSERT INTO servico (id, nome, idpai, datacriacao) VALUES ('3c4738ae-9db0-45dc-aeb7-d5b1078120cb', 'Acesso à Internet', NULL, NOW());
+INSERT INTO servico (id, nome, idpai, datacriacao) VALUES ('de93a38b-378d-42e8-9440-9c9b3bf9c6cf', 'Indisponível para navegação', '3c4738ae-9db0-45dc-aeb7-d5b1078120cb', NOW());
+INSERT INTO servico (id, nome, idpai, datacriacao) VALUES ('48297b93-0f99-41a4-af3d-76007f5fd8bb', 'Lentidão', '3c4738ae-9db0-45dc-aeb7-d5b1078120cb', NOW());
+INSERT INTO servico (id, nome, idpai, datacriacao) VALUES ('40dbddd4-790a-4553-aa45-cbae9183e7f5', 'Backup', NULL, NOW());
+INSERT INTO servico (id, nome, idpai, datacriacao) VALUES ('2ae99cf5-3658-4d79-ba03-b8a4e58c227a', 'Problemas com backup', '40dbddd4-790a-4553-aa45-cbae9183e7f5', NOW());
+INSERT INTO servico (id, nome, idpai, datacriacao) VALUES ('ba66e674-e7a3-49ce-9f17-9fef86801441', 'Restauração de backup', '40dbddd4-790a-4553-aa45-cbae9183e7f5', NOW());
+INSERT INTO servico (id, nome, idpai, datacriacao) VALUES ('e30353ec-61b3-4988-8568-365f1ed27a06', 'CFTV', NULL, NOW());
+INSERT INTO servico (id, nome, idpai, datacriacao) VALUES ('6b246aff-e041-4e44-8c80-d3abe42e5cf1', 'Recuperação de Gravações', 'e30353ec-61b3-4988-8568-365f1ed27a06', NOW());
+INSERT INTO servico (id, nome, idpai, datacriacao) VALUES ('0b0c7707-284c-4450-8f2d-89b7f75a192b', 'Impressora e scanner', NULL, NOW());
+INSERT INTO servico (id, nome, idpai, datacriacao) VALUES ('5c23d92e-beb0-429f-a273-619a2b2ad7c5', 'Configuração de impressoras', '0b0c7707-284c-4450-8f2d-89b7f75a192b', NOW());
+INSERT INTO servico (id, nome, idpai, datacriacao) VALUES ('0e83ff2c-51b2-42f9-be54-59c4eecb0d75', 'Problemas na impressora', '0b0c7707-284c-4450-8f2d-89b7f75a192b', NOW());
+INSERT INTO servico (id, nome, idpai, datacriacao) VALUES ('ab1b15f1-8e3e-443a-afb6-f691d06166dc', 'Instalação de software', NULL, NOW());
+INSERT INTO servico (id, nome, idpai, datacriacao) VALUES ('7fa22dc3-cb19-4977-9327-e11d48107615', 'Antivírus', 'ab1b15f1-8e3e-443a-afb6-f691d06166dc', NOW());
+INSERT INTO servico (id, nome, idpai, datacriacao) VALUES ('7b89a78e-ffbc-4d0f-97d3-45acc652a177', 'Atualização de softwares', 'ab1b15f1-8e3e-443a-afb6-f691d06166dc', NOW());
+INSERT INTO servico (id, nome, idpai, datacriacao) VALUES ('7f5575ca-b37a-434b-bc3f-e26f7c31d8aa', 'Problema de hardware', NULL, NOW());
+INSERT INTO servico (id, nome, idpai, datacriacao) VALUES ('bc1d554b-39c5-4c70-8afd-927ef139c4a9', 'Equipamento não liga', '7f5575ca-b37a-434b-bc3f-e26f7c31d8aa', NOW());
+INSERT INTO servico (id, nome, idpai, datacriacao) VALUES ('de0d5c8b-f069-49a7-9067-3aadb423e419', 'Identificação de problema', '7f5575ca-b37a-434b-bc3f-e26f7c31d8aa', NOW());
+INSERT INTO servico (id, nome, idpai, datacriacao) VALUES ('e29d15a7-61da-40b3-ae12-c22a6a67ac5e', 'Lentidão e Travamento', '7f5575ca-b37a-434b-bc3f-e26f7c31d8aa', NOW());
+INSERT INTO servico (id, nome, idpai, datacriacao) VALUES ('5e9cfa08-feb4-471e-9acd-05ed92d5a953', 'Montagem de computador', '7f5575ca-b37a-434b-bc3f-e26f7c31d8aa', NOW());
+INSERT INTO servico (id, nome, idpai, datacriacao) VALUES ('a4f63503-7bf2-45f3-a54d-a618a8d76e71', 'Problemas na estação de trabalho', NULL, NOW());
+INSERT INTO servico (id, nome, idpai, datacriacao) VALUES ('db9ee279-da86-4442-a96c-d07b1c0ed5ed', 'Computador não conecta na rede', 'a4f63503-7bf2-45f3-a54d-a618a8d76e71', NOW());
+INSERT INTO servico (id, nome, idpai, datacriacao) VALUES ('fd9e7229-1d69-4b32-9e37-bc18111195b5', 'Configuração de computador', 'a4f63503-7bf2-45f3-a54d-a618a8d76e71', NOW());
+INSERT INTO servico (id, nome, idpai, datacriacao) VALUES ('394f0edd-f372-440f-a19f-78ecebf5083a', 'Pouco armazenamento na máquina', 'a4f63503-7bf2-45f3-a54d-a618a8d76e71', NOW());
+INSERT INTO servico (id, nome, idpai, datacriacao) VALUES ('8325a1d2-3049-44df-95ca-3dfcc2cdba7f', 'Problemas em abrir arquivos', 'a4f63503-7bf2-45f3-a54d-a618a8d76e71', NOW());
+INSERT INTO servico (id, nome, idpai, datacriacao) VALUES ('1cb186e8-8f6e-43e8-98f7-01ad176d907e', 'Problemas em acessar usuário do Windows', 'a4f63503-7bf2-45f3-a54d-a618a8d76e71', NOW());
+INSERT INTO servico (id, nome, idpai, datacriacao) VALUES ('2fa6118e-6320-4604-ad0b-538fc90eb847', 'Reinstalação de sistema operacional', 'a4f63503-7bf2-45f3-a54d-a618a8d76e71', NOW());
+INSERT INTO servico (id, nome, idpai, datacriacao) VALUES ('f5e2a9ea-f1d8-4ed3-a6f3-41a77ea66a57', 'Suporte ao serviço de e-mail', NULL, NOW());
+INSERT INTO servico (id, nome, idpai, datacriacao) VALUES ('7d8122cf-660a-4e34-a61d-62d4e7010130', 'Gerenciamento de grupo de e-mail', 'f5e2a9ea-f1d8-4ed3-a6f3-41a77ea66a57', NOW());
+INSERT INTO servico (id, nome, idpai, datacriacao) VALUES ('32f2b101-439d-4e2e-98c4-19d67f693d7b', 'Problemas no envio de e-mail', 'f5e2a9ea-f1d8-4ed3-a6f3-41a77ea66a57', NOW());
+
+
+
+
+
+

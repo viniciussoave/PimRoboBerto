@@ -1,0 +1,40 @@
+-- Tabela: usuario
+CREATE TABLE usuario (
+    id UUID PRIMARY KEY,
+    nome VARCHAR(50),
+    senha VARCHAR(50),
+    email VARCHAR(100),
+    datacriacao TIMESTAMP WITHOUT TIME ZONE
+);
+
+-- Tabela: servico
+CREATE TABLE servico (
+    id UUID PRIMARY KEY,
+    nome VARCHAR(100),
+    idpai UUID,
+    datacriacao TIMESTAMP WITHOUT TIME ZONE,
+    CONSTRAINT fk_servico_idpai FOREIGN KEY (idpai) REFERENCES servico (id)
+);
+
+-- Tabela: chamado
+CREATE TABLE chamado (
+    id UUID PRIMARY KEY,
+    idservico UUID NOT NULL,
+    titulo VARCHAR(100) NOT NULL,
+    status VARCHAR(15) NOT NULL,
+    numerochamado INTEGER NOT NULL,
+    datacriacao TIMESTAMP WITHOUT TIME ZONE NOT NULL,
+    dataatualizacao TIMESTAMP WITHOUT TIME ZONE NOT NULL,
+    idusuario UUID NOT NULL,
+    CONSTRAINT fk_chamado_idservico FOREIGN KEY (idservico) REFERENCES servico (id),
+    CONSTRAINT fk_chamado_idusuario FOREIGN KEY (idusuario) REFERENCES usuario (id)
+);
+
+-- Tabela: solucoes
+CREATE TABLE solucoes (
+    id UUID PRIMARY KEY,
+    solucao TEXT,
+    idservicopai UUID,
+    datacriacao TIMESTAMP WITHOUT TIME ZONE,
+    CONSTRAINT fk_solucoes_idservicopai FOREIGN KEY (idservicopai) REFERENCES servico (id)
+);
